@@ -1,0 +1,26 @@
+input.ng-invalid.ng-touched{
+    border: 1px solid #ffd565;
+}
+small{
+    color:#ffd565;
+}
+select.ng-invalid.ng-touched{
+    border: 1px solid #ffd565;
+}
+
+input[type='checkbox']{
+    width: 20%;
+}
+.search-results {
+    position:absolute;
+    z-index: 1;
+    background-color: #171717;
+    width:inherit;
+    color: #fff;
+    border-radius: 5px;
+    p {
+      padding: 5px .75rem;
+      margin:0;
+      cursor: pointer;
+    }
+}

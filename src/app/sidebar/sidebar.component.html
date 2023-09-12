@@ -1,0 +1,78 @@
+<div class="wrapper">
+    <div class="sidebar-wrapper" data-simplebar="true">
+        <div class="sidebar-header">
+            <div>
+                <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon" width="200">
+            </div>
+            <div class="toggle-icon ms-auto d-lg-none"><i class='bx bx-arrow-to-left'></i>
+            </div>
+        </div>
+        <!--navigation-->
+        <ul class="metismenu" id="menu">
+            <li>
+                <a routerLink="/add-intimation" routerLinkActive="active">
+                    <div class="parent-icon"><i class='bx bx-folder-plus'></i>
+                    </div>
+                    <div class="menu-title">New Consignment</div>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:" class="has-arrow" data-bs-toggle="dropdown">
+                    <div class="parent-icon"><i class='bx bx-file'></i>
+                    </div>
+                    <div class="menu-title">Reports</div>
+                </a>
+                <ul class="dropdown-menu down-menu" routerLinkActive="show">
+                    <li> <a routerLink="/advance-pending" routerLinkActive="active"><i class="bx bx-rupee"></i>Advance Pending Report</a>
+                    </li>
+                    <li> <a routerLink="/payment-pending" routerLinkActive="active"><i class="bx bx-rupee"></i>Payment Pending Report</a>
+                    </li>
+                    <li> <a routerLink="/consolidated" routerLinkActive="active"><i class="bx bx-detail"></i>Consolidated Report</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="javascript:" class="has-arrow" data-bs-toggle="dropdown">
+                    <div class="parent-icon"><i class='bx bx-bus'></i>
+                    </div>
+                    <div class="menu-title">Vehicles</div>
+                </a>
+                <ul class="dropdown-menu down-menu" routerLinkActive="show">
+                    <li> <a routerLink="/add-hospital" routerLinkActive="active"><i class="bx bx-folder-plus"></i>Add Vehicles</a>
+                    </li>
+                    <li> <a routerLink="/hospitals" routerLinkActive="active"><i class="bx bx-file"></i>Vehicles List</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:" class="has-arrow" data-bs-toggle="dropdown">
+                    <div class="parent-icon"><i class='bx bx-buildings'></i>
+                    </div>
+                    <div class="menu-title">Offices</div>
+                </a>
+                <ul class="dropdown-menu down-menu" routerLinkActive="show">
+                    <li> <a routerLink="/add-office" routerLinkActive="active"><i class="bx bx-folder-plus"></i>Add Offices</a>
+                    </li>
+                    <li> <a routerLink="/offices" routerLinkActive="active"><i class="bx bx-file"></i>Offices List</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:" class="has-arrow" data-bs-toggle="dropdown">
+                    <div class="parent-icon"><i class='bx bx-current-location'></i>
+                    </div>
+                    <div class="menu-title">Cities</div>
+                </a>
+                <ul class="dropdown-menu down-menu" routerLinkActive="show">
+                    <li> <a routerLink="/add-city" routerLinkActive="active"><i class="bx bx-folder-plus"></i>Add New City</a>
+                    </li>
+                    <li> <a routerLink="/cities" routerLinkActive="active"><i class="bx bx-file"></i>Cities List</a>
+                    </li>
+                </ul>
+            </li>
+            
+        </ul>
+        <!--end navigation-->
+    </div>
+</div>

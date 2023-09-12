@@ -1,0 +1,93 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400,900,700,500,300,100);
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #E0E0E0;
+    font-family: 'Roboto', sans-serif;
+}
+
+#invoiceholder {
+    width: 100%;
+    height: 100%;
+    padding: 50px 0;
+}
+.invoiceheader{
+    padding: 10px;
+}
+#invoice {
+    position: relative;
+    margin: 0 auto;
+    background: #FFF;
+    color: #444 !important;
+    width: 700px;
+    height: 990px;
+}
+#invoice1 {
+    position: relative;
+    margin: 0 auto;
+    background: #FFF;
+    width: 700px;
+}
+#invoice-top {
+    border-bottom: 2px solid #444;
+}
+.cta-group {
+    text-align: right;
+    padding: 15px;
+    border-bottom: 1px solid #eeeeee;
+}
+.cta-group a {
+    display: inline-block;
+    padding: 7px;
+    border-radius: 4px;
+    background: rgb(196, 57, 10);
+    margin-right: 10px;
+    min-width: 100px;
+    text-align: center;
+    color: #fff;
+    font-size: 0.75em;
+}
+
+.cta-group .btn-primary {
+    background: #00a63f;
+}
+
+.cta-group.mobile-btn-group {
+    display: none;
+}
+table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 5px 10px;
+    border: 1px solid #444;
+    // font-size: 0.70em;
+    text-align: left;
+}
+th {
+    padding: 10px;
+    border: 1px solid #444;
+    // font-size: 0.70em;
+    text-align: left;
+    background-color: lightblue;
+    color: #fff;
+}
+.table-main{
+    padding: 20px 50px;
+}
+.text-right{
+    text-align: right;
+}
+.bold{
+    font-weight: bold;
+}
+.center{
+    text-align: center;
+}

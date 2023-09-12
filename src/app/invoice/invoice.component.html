@@ -1,0 +1,117 @@
+<div class="container">
+    <div id="invoiceholder">
+        <div id="invoice1">
+            <div class="cta-group">
+                <a style="cursor: pointer;" (click)="downloadPdf();" class="btn-primary">Print</a>
+            </div>
+        </div>
+        
+        <div id="invoice">
+            <div class="invoiceheader">
+                <!-- <div style="width: 100%;height: 150px;"></div> -->
+                <img src="assets/images/header.png" style="width: 100%;height: 135px;">
+            </div>
+            <div class="row" style="text-align: center;padding-top: 10px;">
+                <h3 style="color: #444;font-weight: bold;font-size: 1.3em;">TAX INVOICE</h3>
+            </div>
+            <div class="table-main" style="font-size: 0.9em;">
+                <p style="color: #444;font-weight: bold;text-align: right;">Date: {{table_data?.created}}</p>
+                <p style="color: #444;font-weight: bold;">Invoice No: {{table_data?.invoice}}</p>
+                <div style="margin-top: 10px; color: #444;font-weight: bold;padding: 10px 0px;">
+                    <p>To</p>
+                    <p>{{table_data?.iname}},</p>
+                    <p>{{table_data?.address1}}</p>
+                    <p>{{table_data?.address2}}</p>
+                    <p>State & GSTIN No: {{table_data?.gstin_tpa}}</p>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Claim No</th>
+                            <th>Claim / Case Type (LOB)</th>
+                            <th>Fees</th>
+                            <th>Transport Charges</th>
+                            <th>MRD Charges</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>{{table_data?.claimno}}</td>
+                            <td>{{table_data?.claim_type}}</td>
+                            <td>{{+table_data?.fees}}</td>
+                            <td>{{+table_data?.transport}}</td>
+                            <td>{{+table_data?.mrd}}</td>
+                            <td class="text-right">{{subtotal}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right" colspan="6">GST 18%</td>
+                            <td class="text-right">{{gst_value}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right" colspan="6">Round Off</td>
+                            <td class="text-right">{{roundoff}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right bold" colspan="6">Grand Total</td>
+                            <td class="text-right bold">{{total}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left bold" colspan="7">Rupees {{words}} only</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="bold sample">
+                    <tbody>
+                        <tr>
+                            <td colspan="2">{{table_data?.company_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>PAN NO:</td><td>{{table_data?.pan}}</td>
+                        </tr>
+                        <tr>
+                            <td>GST NO:</td><td>{{table_data?.gstin}}</td>
+                        </tr>
+                        <tr>
+                            <td>HSN CODE:</td><td>{{table_data?.hsn}}</td>
+                        </tr>
+                        <tr>
+                            <td>Description of Services:</td><td>{{table_data?.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="bold sample">
+                    <tbody>
+                        <tr>
+                            <td colspan="2">Bank details</td><td rowspan="5" style="width: 220px;">
+                                <p class="center" style="margin-bottom: 10px;">For {{table_data?.company_name}}</p>
+                                <!-- <img src="assets/images/logo-icon.png" style="width: 200px;height: 80px;"> -->
+                                <div style="width: 200px;height: 70px;"></div>
+                                <p class="center" style="margin-top: 10px;">Authorized Signatory</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Bank Name:</td><td>{{table_data?.bank}}</td>
+                        </tr>
+                        <tr>
+                            <td>Branch:</td><td>{{table_data?.branch}}</td>
+                        </tr>
+                        <tr>
+                            <td>A/C No:</td><td>{{table_data?.accno}}</td>
+                        </tr>
+                        <tr>
+                            <td>IFSC Code:</td><td>{{table_data?.ifsc}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>

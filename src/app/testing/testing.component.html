@@ -1,0 +1,107 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<!--start page wrapper -->
+<div class="page-wrapper">
+    <div class="page-content">
+        <div class="card">
+            <div class="card-body p-4">
+                <h5 class="card-title">View Intimation</h5>
+                <hr />
+                <div class="form-body mt-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="border border-3 p-4 rounded">
+                                <form class="row g-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">GICS ID</label>:&nbsp;{{table_data?.gicsid}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Vendor Name</label>:&nbsp;{{table_data?.vname}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Patient Name</label>:&nbsp;{{table_data?.pname}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Age</label>:&nbsp;{{table_data?.age}} Years
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Sex</label>:&nbsp;{{table_data?.sex}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Date of Admission</label>:&nbsp;{{table_data?.doa}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Date of Discharge</label>:&nbsp;{{table_data?.dod}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Date of Intimation</label>:&nbsp;{{table_data?.doi}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">OP Number</label>:&nbsp;{{table_data?.opno}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">IP Number</label>:&nbsp;{{table_data?.ipno}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Hospital Details</label>:&nbsp;{{table_data?.hname}},
+                                        {{table_data?.hplace}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Trigger</label>:&nbsp;{{table_data?.triggers}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Claim Number</label>:&nbsp;{{table_data?.claimno}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Insurance / TPA</label>:&nbsp;{{table_data?.iname}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Type of
+                                            Policy</label>:&nbsp;{{table_data?.policy_type}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Date of Joining</label>:&nbsp;{{table_data?.doj}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Claim Type</label>:&nbsp;{{table_data?.claim_type}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Fees</label>:&nbsp;Rs. {{table_data?.fees}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">MRD Charges</label>:&nbsp;Rs. {{table_data?.mrd}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Transportation Charges</label>:&nbsp;Rs.
+                                        {{table_data?.transport}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Type of Case</label>:&nbsp;{{table_data?.case_type}}
+                                    </div>
+                                    <div class="col-md-4" *ngIf="table_data?.status=='ok'">
+                                        <label class="form-label">Doctor Questionnaire</label>&nbsp;
+                                        <button type="button" class="btn btn-light" (click)="downloading2()">Download</button>
+                                    </div>
+                                    <div class="col-md-4" *ngIf="table_data?.status=='ok'">
+                                        <label class="form-label">Insured Questionnaire</label>&nbsp;
+                                        <button type="button" class="btn btn-light" (click)="downloading3()">Download</button>
+                                    </div>
+                                    <div class="col-md-4" *ngIf="table_data?.status=='ok'">
+                                        <label class="form-label">Final Report</label>&nbsp;
+                                        <button type="button" class="btn btn-light" (click)="downloading1()">Download</button>
+                                    </div>
+                                    <div class="col-md-4" *ngIf="table_data?.invoice=='1'">
+                                        <button type="button" class="btn btn-light" (click)="invoice()">View Invoice</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div><!--end row-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--end page wrapper -->
+<!-- <app-footer></app-footer> -->

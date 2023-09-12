@@ -1,0 +1,87 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<!--start page wrapper -->
+<div class="page-wrapper">
+    <div class="page-content">
+        <div class="card">
+            <div class="card-body p-4">
+                <h5 class="card-title">Add Company Details</h5>
+                <hr />
+                <div class="form-body mt-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="border border-3 p-4 rounded">
+                                <form class="row g-3" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                                    <div class="col-md-4">
+                                        <label for="iname" class="form-label">Company Name</label>
+                                        <input type="text" class="form-control" id="iname"
+                                            formControlName="iname">
+                                        <small *ngIf="myForm.get('iname').errors && myForm.get('iname').touched"><i class="bi bi-exclamation-circle"></i> Company Name is required</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="pan" class="form-label">PAN No</label>
+                                        <input type="text" class="form-control" id="pan"
+                                            formControlName="pan">
+                                        <small *ngIf="myForm.get('pan').errors && myForm.get('pan').touched"><i class="bi bi-exclamation-circle"></i> PAN No is required</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="gstin" class="form-label">GSTIN No</label>
+                                        <input type="text" class="form-control" id="gstin"
+                                            formControlName="gstin">
+                                        <small *ngIf="myForm.get('gstin').errors && myForm.get('gstin').touched"><i class="bi bi-exclamation-circle"></i> GSTIN No is required</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="hsn" class="form-label">HSN Code</label>
+                                        <input type="text" class="form-control" id="hsn"
+                                            formControlName="hsn">
+                                        <small *ngIf="myForm.get('hsn').errors && myForm.get('hsn').touched"><i class="bi bi-exclamation-circle"></i> HSN Code is required</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="description" class="form-label">Service Description</label>
+                                        <input type="text" class="form-control" id="description"
+                                            formControlName="description">
+                                        <small *ngIf="myForm.get('description').errors && myForm.get('description').touched"><i class="bi bi-exclamation-circle"></i> Service Description is required</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="bank" class="form-label">Bank Name</label>
+                                        <input type="text" class="form-control" id="bank"
+                                            formControlName="bank">
+                                        <small *ngIf="myForm.get('bank').errors && myForm.get('bank').touched"><i class="bi bi-exclamation-circle"></i> Bank Name is required</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="branch" class="form-label">Branch Name</label>
+                                        <input type="text" class="form-control" id="branch"
+                                            formControlName="branch">
+                                        <small *ngIf="myForm.get('branch').errors && myForm.get('branch').touched"><i class="bi bi-exclamation-circle"></i> Branch Name is required</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="accno" class="form-label">Account Number</label>
+                                        <input type="text" class="form-control" id="accno"
+                                            formControlName="accno">
+                                        <small *ngIf="myForm.get('accno').errors && myForm.get('accno').touched"><i class="bi bi-exclamation-circle"></i> Account No is required</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="ifsc" class="form-label">IFSC Code</label>
+                                        <input type="text" class="form-control" id="ifsc"
+                                            formControlName="ifsc">
+                                        <small *ngIf="myForm.get('ifsc').errors && myForm.get('ifsc').touched"><i class="bi bi-exclamation-circle"></i> IFSC Code is required</small>
+                                    </div>
+                                    <div class="row g-3 mt-3">
+                                        <div class="col-md-4">
+                                            <div class="d-grid">
+                                                <button type="submit" class="btn btn-light">Save Details</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div><!--end row-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--end page wrapper -->
