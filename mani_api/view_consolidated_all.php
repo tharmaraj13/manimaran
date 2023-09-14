@@ -11,9 +11,10 @@ $fdate= strtotime($_POST['fdate']);
 $tdate=strtotime($_POST['tdate'])+86399;
 
 $check = $dbcon->query("SELECT
-X.*,Y.number,Y.wheels
-FROM lorry_details X, lorry_no Y
+X.*,Y.number,Y.wheels,Z.oname,Z.onumber
+FROM lorry_details X, lorry_no Y, office_details Z
 WHERE X.lorry_no=Y.id
+and X.office_no=Z.id
 and X.load_date<='$tdate' and X.load_date>='$fdate'
 ORDER by id DESC;");
 if ($check->num_rows > 0) {
@@ -39,6 +40,7 @@ if ($check->num_rows > 0) {
         $resp_status->payment_date = $result['payment_date']=='' ? '': Date('Y-m-d',$result['payment_date']);
         $resp_status->account_name = $result['account_name'];
         $resp_status->remarks = $result['remarks'];
+        $resp_status->office_detail = $result['oname'].", ".$result['onumber'];
 
         $response[] = $resp_status;
     }

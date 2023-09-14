@@ -7,9 +7,10 @@ header("Access-Control-Allow-Headers:Access-Control-Allow-Headers, Origin,Accept
 include 'config.php';
 
 $response = [];
-$check = $dbcon->query("SELECT X.*,Y.number,Y.wheels
-FROM lorry_details X, lorry_no Y
+$check = $dbcon->query("SELECT X.*,Y.number,Y.wheels,Z.oname,Z.onumber
+FROM lorry_details X, lorry_no Y, office_details Z
 WHERE X.lorry_no=Y.id and X.advance_amt=''
+and X.office_no=Z.id
 ORDER by id DESC;");
 if ($check->num_rows > 0) {
     for ($i = 0; $i < $check->num_rows; $i++) {
@@ -34,6 +35,9 @@ if ($check->num_rows > 0) {
         $resp_status->payment_date = $result['payment_date']=='' ? '': Date('Y-m-d',$result['payment_date']);
         $resp_status->account_name = $result['account_name'];
         $resp_status->office_no = $result['office_no'];
+        $resp_status->office_detail = $result['oname'].", ".$result['onumber'];
+        $resp_status->other_amt = $result['other_amt'];
+        $resp_status->account_name_ad = $result['account_name_ad'];
         $resp_status->remarks = stripslashes($result['remarks']);
 
         $response[] = $resp_status;

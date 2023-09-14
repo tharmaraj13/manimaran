@@ -51,7 +51,7 @@ $dbcon->query("INSERT INTO lorry_details (
     '$array[18]',
     '".addslashes($array[19])."',
     '$array[20]',
-    '$array[21]',
+    '$array[21]'
 );");
 mysqli_close($dbcon);
 }

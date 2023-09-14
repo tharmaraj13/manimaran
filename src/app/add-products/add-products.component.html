@@ -48,10 +48,13 @@
                                         <div class="col-md-4">
                                             <label for="from" class="form-label">From Location</label>
                                             <input type="text" class="form-control" id="from" formControlName="from"
-                                            (keyup)="searching($event)" autocomplete="off">
-                                            <section class="search-results">
+                                            autocomplete="off" list="countrydata" role="combobox">
+                                            <!-- <section class="search-results">
                                                 <p (click)="autofill($event)" *ngFor="let loc of flocations">{{loc.name}}</p>
-                                            </section>
+                                            </section> -->
+                                            <datalist id="countrydata" role="listbox">
+                                                <option className="my-option" *ngFor="let loc of locations1">{{loc.name}}</option>
+                                            </datalist>
                                             <small *ngIf="myForm.get('from').errors && myForm.get('from').touched"><i
                                                     class="bi bi-exclamation-circle"></i> From Location is
                                                 required</small>
@@ -59,10 +62,13 @@
                                         <div class="col-md-4">
                                             <label for="to" class="form-label">To Location</label>
                                             <input type="text" class="form-control" id="to" formControlName="to"
-                                            (keyup)="searching1($event)" autocomplete="off">
-                                            <section class="search-results">
+                                            autocomplete="off" list="countrydata1" role="combobox">
+                                            <!-- <section class="search-results">
                                                 <p (click)="autofill1($event)" *ngFor="let loc of tlocations">{{loc.name}}</p>
-                                            </section>
+                                            </section> -->
+                                            <datalist id="countrydata1" role="listbox">
+                                                <option className="my-option" *ngFor="let loc of locations1">{{loc.name}}</option>
+                                            </datalist>
                                             <small *ngIf="myForm.get('to').errors && myForm.get('to').touched"><i
                                                     class="bi bi-exclamation-circle"></i> To Location is
                                                 required</small>
@@ -117,11 +123,6 @@
                                                 formControlName="advance_paid">
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="account_name_ad" class="form-label">Account Name</label>
-                                            <input type="text" class="form-control" id="account_name_ad"
-                                                formControlName="account_name_ad">
-                                        </div>
-                                        <div class="col-md-4">
                                             <label for="commission" class="form-label">Commission</label>
                                             <input type="number" class="form-control" id="commission"
                                                 formControlName="commission">
@@ -135,6 +136,11 @@
                                             <label for="mamul" class="form-label">Mamul</label>
                                             <input type="number" class="form-control" id="mamul"
                                                 formControlName="mamul">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="account_name_ad" class="form-label">Account Name</label>
+                                            <input type="text" class="form-control" id="account_name_ad"
+                                                formControlName="account_name_ad">
                                         </div>
                                     </div>
                                 </div>

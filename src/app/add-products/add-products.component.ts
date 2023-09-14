@@ -79,7 +79,7 @@ export class AddProductsComponent {
         this.myForm.get('remarks').setValue(res.remarks);
         this.myForm.get('other_amt').setValue(res.other_amt);
         this.myForm.get('account_name_ad').setValue(res.account_name_ad);
-        this.balance_amt()
+        this.balance_amt();
       }
     })
   }
@@ -92,7 +92,7 @@ export class AddProductsComponent {
   }
   searching(e: any) {
     this.flocations=this.locations1.filter((d:any) => {
-      return d.name.includes(e.target.value);
+      return d.name.toLowerCase().includes(e.target.value.toLowerCase());
     });
   }
   autofill1(e: any) {
@@ -101,7 +101,7 @@ export class AddProductsComponent {
   }
   searching1(e: any) {
     this.tlocations=this.locations1.filter((d:any) => {
-      return d.name.includes(e.target.value);
+      return d.name.toLowerCase().includes(e.target.value.toLowerCase());
     });
   }
   onSubmit() {

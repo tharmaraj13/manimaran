@@ -41,6 +41,7 @@
                                             <tr>
                                                 <th>S.No</th>
                                                 <th>Date</th>
+                                                <th>Office Detail</th>
                                                 <th>Lorry Details</th>
                                                 <th>From</th>
                                                 <th>To</th>
@@ -60,6 +61,7 @@
                                             <tr *ngFor="let prod of table_data;let i=index">
                                                 <td>{{i+1}}</td>
                                                 <td>{{prod.load_date}}</td>
+                                                <td>{{prod.office_detail}}</td>
                                                 <td>{{prod.lorry_no}}</td>
                                                 <td>{{prod.from}}</td>
                                                 <td>{{prod.to}}</td>
