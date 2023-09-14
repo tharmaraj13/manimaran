@@ -33,6 +33,7 @@ if ($check->num_rows > 0) {
         $resp_status->payment_amt = $result['payment_amt'];
         $resp_status->payment_date = $result['payment_date']=='' ? '': Date('Y-m-d',$result['payment_date']);
         $resp_status->account_name = $result['account_name'];
+        $resp_status->remarks = $result['remarks'];
 
         $response[] = $resp_status;
     }

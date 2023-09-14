@@ -51,6 +51,9 @@ export class AddProductsComponent {
         payment_amt: new FormControl(''),
         account_name: new FormControl(''),
         remarks: new FormControl(''),
+        other_amt: new FormControl(''),
+        balance: new FormControl(''),
+        account_name_ad: new FormControl(''),
       }
     );
     this.apiservice.view_sales_id(this.id).subscribe((res:any) => {
@@ -74,8 +77,14 @@ export class AddProductsComponent {
         this.myForm.get('payment_amt').setValue(res.payment_amt);
         this.myForm.get('account_name').setValue(res.account_name);
         this.myForm.get('remarks').setValue(res.remarks);
+        this.myForm.get('other_amt').setValue(res.other_amt);
+        this.myForm.get('account_name_ad').setValue(res.account_name_ad);
+        this.balance_amt()
       }
     })
+  }
+  balance_amt(){
+    this.myForm.get('balance').setValue(this.myForm.get('freight').value - this.myForm.get('advance_amt').value);
   }
   autofill(e: any) {
     this.myForm.get('from').setValue(e.target.innerHTML);
@@ -120,6 +129,8 @@ export class AddProductsComponent {
       data.push(this.id);
       data.push(this.myForm.get('office_no').value);
       data.push(this.myForm.get('remarks').value);
+      data.push(this.myForm.get('other_amt').value);
+      data.push(this.myForm.get('account_name_ad').value);
       this.apiservice.add_products(data).subscribe((res: any) => {
         Swal.fire({
           title: 'Intimation Added Successfully',

@@ -53,10 +53,11 @@
                                                 <th>Commission</th>
                                                 <th>Loading Charge</th>
                                                 <th>Mamul</th>
-                                                <th>Delivery Date</th>
+                                                <th>Received Sent</th>
                                                 <th>Payment Amount</th>
                                                 <th>Payment Date</th>
                                                 <th>Account Name</th>
+                                                <th>Remarks</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -80,6 +81,7 @@
                                                 <td>{{prod.payment_amt}}</td>
                                                 <td>{{prod.payment_date}}</td>
                                                 <td>{{prod.account_name}}</td>
+                                                <td>{{prod.remarks}}</td>
                                                 <td><a href="/add-intimation/{{prod.id}}">Edit</a>
                                                     &nbsp;<a style="cursor: pointer;" (click)="remove(prod.id)">Remove</a></td>
                                             </tr>

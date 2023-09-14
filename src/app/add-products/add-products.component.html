@@ -90,7 +90,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label for="freight" class="form-label">Freight Charges</label>
-                                            <input type="number" class="form-control" id="freight"
+                                            <input type="number" class="form-control" id="freight" (change)="balance_amt()"
                                                 formControlName="freight">
                                             <small
                                                 *ngIf="myForm.get('freight').errors && myForm.get('freight').touched"><i
@@ -108,13 +108,18 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label for="advance_amt" class="form-label">Advance Amount</label>
-                                            <input type="number" class="form-control" id="advance_amt"
+                                            <input type="number" class="form-control" id="advance_amt" (change)="balance_amt()"
                                                 formControlName="advance_amt">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="advance_paid" class="form-label">Advance Paid</label>
                                             <input type="number" class="form-control" id="advance_paid"
                                                 formControlName="advance_paid">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="account_name_ad" class="form-label">Account Name</label>
+                                            <input type="text" class="form-control" id="account_name_ad"
+                                                formControlName="account_name_ad">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="commission" class="form-label">Commission</label>
@@ -137,7 +142,7 @@
                                     <h5>Payment Details</h5>
                                     <div class="row g-3">
                                         <div class="col-md-4">
-                                            <label for="delivery_date" class="form-label">Delivered Date</label>
+                                            <label for="delivery_date" class="form-label">Received Sent</label>
                                             <input type="date" class="form-control" id="delivery_date"
                                                 formControlName="delivery_date">
                                         </div>
@@ -152,7 +157,12 @@
                                                 formControlName="remarks">
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="payment_amt" class="form-label">Payment Amount</label>
+                                            <label for="balance" class="form-label">Balance Amount</label>
+                                            <input type="text" class="form-control" id="balance"
+                                                formControlName="balance" readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="payment_amt" class="form-label">Paid Amount</label>
                                             <input type="number" class="form-control" id="payment_amt"
                                                 formControlName="payment_amt">
                                         </div>
@@ -160,6 +170,11 @@
                                             <label for="account_name" class="form-label">Account Name</label>
                                             <input type="text" class="form-control" id="account_name"
                                                 formControlName="account_name">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="other_amt" class="form-label">Other Charges</label>
+                                            <input type="number" class="form-control" id="other_amt"
+                                                formControlName="other_amt">
                                         </div>
                                     </div>
                                 </div>

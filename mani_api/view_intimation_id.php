@@ -33,6 +33,8 @@ if ($id == 'undefined') {
         $resp_status->payment_date = $result['payment_date']=='' ? '': Date('Y-m-d',$result['payment_date']);
         $resp_status->account_name = $result['account_name'];
         $resp_status->office_no = $result['office_no'];
+        $resp_status->other_amt = $result['other_amt'];
+        $resp_status->account_name_ad = $result['account_name_ad'];
         $resp_status->remarks = stripslashes($result['remarks']);
     } else {
         $resp_status->status = 'error';
