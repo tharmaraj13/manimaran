@@ -42,6 +42,7 @@ export class SalesReportComponent{
     });
   }
   onSubmit() {
+    this.table_data=[];
     this.apiservice.view_sales_all(
       this.myForm.get('fromdate').value,
       this.myForm.get('todate').value

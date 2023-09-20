@@ -12,6 +12,20 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class LoginComponent {
   myForm: FormGroup | any;
   constructor(private apiservice: ApiserviceService, private router: Router, private route: ActivatedRoute) { }
+  ngAfterViewInit(){
+    document.querySelector('#show_hide_password a')!.addEventListener('click',()=>{
+      if((<HTMLInputElement>document.querySelector('#show_hide_password input')).type=='text'){
+        (<HTMLInputElement>document.querySelector('#show_hide_password input')).type='password';
+        document.querySelector('#show_hide_password i')!.classList.add('bx-hide');
+        document.querySelector('#show_hide_password i')!.classList.remove('bx-show');
+      }
+      else if((<HTMLInputElement>document.querySelector('#show_hide_password input')).type=='password'){
+        (<HTMLInputElement>document.querySelector('#show_hide_password input')).type='text';
+        document.querySelector('#show_hide_password i')!.classList.remove('bx-hide');
+        document.querySelector('#show_hide_password i')!.classList.add('bx-show');
+      }
+    });
+  }
   ngOnInit(): void {
     this.apiservice.checking().subscribe((res: any) => {
       if (res.status == 'error') {

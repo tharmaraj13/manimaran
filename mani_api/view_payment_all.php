@@ -16,7 +16,7 @@ FROM lorry_details X, lorry_no Y, office_details Z
 WHERE X.lorry_no=Y.id and X.advance_amt!='' and X.payment_amt=''
 and X.office_no=Z.id
 and X.load_date<='$tdate' and X.load_date>='$fdate'
-ORDER by id DESC;");
+ORDER by load_date DESC;");
 if ($check->num_rows > 0) {
     for ($i = 0; $i < $check->num_rows; $i++) {
         $result = mysqli_fetch_assoc($check);

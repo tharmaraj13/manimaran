@@ -42,6 +42,7 @@ export class ConsolidatedComponent {
     })
   }
   onSubmit() {
+    this.table_data=[];
     this.apiservice.view_consolidated_all(
       this.myForm.get('fromdate').value,
       this.myForm.get('todate').value

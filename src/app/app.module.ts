@@ -30,6 +30,7 @@ import { AddOfficeComponent } from './add-office/add-office.component';
 import { ViewOfficeComponent } from './view-office/view-office.component';
 import { AddLocationComponent } from './add-location/add-location.component';
 import { ViewLocationComponent } from './view-location/view-location.component';
+import { AdvanceInfoComponent } from './advance-info/advance-info.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ViewLocationComponent } from './view-location/view-location.component';
     AddOfficeComponent,
     ViewOfficeComponent,
     AddLocationComponent,
-    ViewLocationComponent
+    ViewLocationComponent,
+    AdvanceInfoComponent
   ],
   imports: [
     BrowserModule,

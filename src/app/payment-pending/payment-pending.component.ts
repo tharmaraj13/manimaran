@@ -42,6 +42,7 @@ export class PaymentPendingComponent {
     })
   }
   onSubmit() {
+    this.table_data=[];
     this.apiservice.view_payment_all(
       this.myForm.get('fromdate').value,
       this.myForm.get('todate').value
