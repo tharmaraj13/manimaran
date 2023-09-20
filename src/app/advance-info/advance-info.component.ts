@@ -28,14 +28,14 @@ export class AdvanceInfoComponent {
         pay_mode: new FormControl('', Validators.required),
       }
     );
-    this.apiservice.view_sales_id(this.id).subscribe((res: any) => {
-      if (res.status == 'ok') {
-        this.myForm.get('load_date').setValue(res.load_date);
-        this.myForm.get('lorry_no').setValue(res.lorry_no);
-        this.myForm.get('adv_amount').setValue(res.adv_amount);
-        this.myForm.get('pay_mode').setValue(res.pay_mode);
-      }
-    })
+    // this.apiservice.view_sales_id(this.id).subscribe((res: any) => {
+    //   if (res.status == 'ok') {
+    //     this.myForm.get('load_date').setValue(res.load_date);
+    //     this.myForm.get('lorry_no').setValue(res.lorry_no);
+    //     this.myForm.get('adv_amount').setValue(res.adv_amount);
+    //     this.myForm.get('pay_mode').setValue(res.pay_mode);
+    //   }
+    // })
   }
   onSubmit() {
     this.myForm.markAllAsTouched();
@@ -45,13 +45,13 @@ export class AdvanceInfoComponent {
       data.push(this.myForm.get('lorry_no').value);
       data.push(this.myForm.get('adv_amount').value);
       data.push(this.myForm.get('pay_mode').value);
-      this.apiservice.add_products(data).subscribe((res: any) => {
-        Swal.fire({
-          title: 'Advance Added Successfully',
-          icon: 'success',
-        });
-        this.router.navigate(['consolidated'])
-      });
+      // this.apiservice.add_products(data).subscribe((res: any) => {
+      //   Swal.fire({
+      //     title: 'Advance Added Successfully',
+      //     icon: 'success',
+      //   });
+      //   this.router.navigate(['consolidated'])
+      // });
     }
   }
 }
