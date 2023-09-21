@@ -15,11 +15,11 @@
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
                                         <div class="col-md-4">
-                                            <label for="load_date" class="form-label">Date</label>
-                                            <input type="date" class="form-control" id="load_date"
-                                                formControlName="load_date">
+                                            <label for="adv_date" class="form-label">Date</label>
+                                            <input type="date" class="form-control" id="adv_date"
+                                                formControlName="adv_date">
                                             <small
-                                                *ngIf="myForm.get('load_date').errors && myForm.get('load_date').touched"><i
+                                                *ngIf="myForm.get('adv_date').errors && myForm.get('adv_date').touched"><i
                                                     class="bi bi-exclamation-circle"></i> Date is required</small>
                                         </div>
                                         <div class="col-md-4">
@@ -37,7 +37,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label for="adv_amount" class="form-label">Advance Amount</label>
-                                            <input type="text" class="form-control" id="adv_amount"
+                                            <input type="number" class="form-control" id="adv_amount"
                                                 formControlName="adv_amount">
                                             <small
                                                 *ngIf="myForm.get('adv_amount').errors && myForm.get('adv_amount').touched"><i

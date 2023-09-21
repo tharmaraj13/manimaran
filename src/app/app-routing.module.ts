@@ -20,6 +20,7 @@ import { ViewOfficeComponent } from './view-office/view-office.component';
 import { ViewLocationComponent } from './view-location/view-location.component';
 import { AddLocationComponent } from './add-location/add-location.component';
 import { AdvanceInfoComponent } from './advance-info/advance-info.component';
+import { ViewAdvanceComponent } from './view-advance/view-advance.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -43,6 +44,7 @@ const routes: Routes = [
   {path:'cities',component:ViewLocationComponent,title:'Cities List'},
   {path:'add-advance',component:AdvanceInfoComponent},
   {path:'add-advance/:id',component:AdvanceInfoComponent},
+  {path:'advances',component:ViewAdvanceComponent,title:'Advances List'},
   {path:'add-vendor',component:AddVendorComponent},
   {path:'add-vendor/:id',component:AddVendorComponent},
   {path:'company',component:CompanyComponent},

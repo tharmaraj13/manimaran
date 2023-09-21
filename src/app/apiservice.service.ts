@@ -247,4 +247,36 @@ export class ApiserviceService {
     formData.append("id", id);
     return this.http.post(url, formData);
   }
+
+  add_advance(data: any): Observable<Object> {
+    var url = this.website + 'add_advance.php';
+    var formData = new FormData();
+    formData.append("values", JSON.stringify(data));
+    return this.http.post(url, formData);
+  }
+  view_advance_id(id:any): Observable<Object> {
+    var url = this.website + 'view_advance_id.php';
+    var formData = new FormData();
+    formData.append("id", id);
+    return this.http.post(url, formData);
+  }
+  view_advance(): Observable<Object> {
+    var url = this.website + 'view_advance.php';
+    var formData = new FormData();
+    return this.http.post(url, formData);
+  }
+  view_advance_all(lorry_no:any,fdate:any,tdate:any): Observable<Object> {
+    var url = this.website + 'view_advance_all.php';
+    var formData = new FormData();
+    formData.append("lorry_no", lorry_no);
+    formData.append("fdate", fdate);
+    formData.append("tdate", tdate);
+    return this.http.post(url, formData);
+  }
+  del_advance(id:any): Observable<Object> {
+    var url = this.website + 'del_advance.php';
+    var formData = new FormData();
+    formData.append("id", id);
+    return this.http.post(url, formData);
+  }
 }
