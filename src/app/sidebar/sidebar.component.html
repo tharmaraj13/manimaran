@@ -47,6 +47,19 @@
             </li>
             <li class="dropdown">
                 <a href="javascript:" class="has-arrow" data-bs-toggle="dropdown">
+                    <div class="parent-icon"><i class='bx bx-cog'></i>
+                    </div>
+                    <div class="menu-title">Maintenance</div>
+                </a>
+                <ul class="dropdown-menu down-menu" routerLinkActive="show">
+                    <li> <a routerLink="/new-maintenance" routerLinkActive="active"><i class="bx bx-folder-plus"></i>New Maintenance</a>
+                    </li>
+                    <li> <a routerLink="/maintenance-list" routerLinkActive="active"><i class="bx bx-bar-chart-alt"></i>Report</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:" class="has-arrow" data-bs-toggle="dropdown">
                     <div class="parent-icon"><i class='bx bx-bus'></i>
                     </div>
                     <div class="menu-title">Vehicles</div>
@@ -81,6 +94,19 @@
                     <li> <a routerLink="/add-city" routerLinkActive="active"><i class="bx bx-folder-plus"></i>Add New City</a>
                     </li>
                     <li> <a routerLink="/cities" routerLinkActive="active"><i class="bx bx-bar-chart-alt"></i>Cities List</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:" class="has-arrow" data-bs-toggle="dropdown">
+                    <div class="parent-icon"><i class='bx bx-wrench'></i>
+                    </div>
+                    <div class="menu-title">Services</div>
+                </a>
+                <ul class="dropdown-menu down-menu" routerLinkActive="show">
+                    <li> <a routerLink="/add-service" routerLinkActive="active"><i class="bx bx-folder-plus"></i>Add Service</a>
+                    </li>
+                    <li> <a routerLink="/services-list" routerLinkActive="active"><i class="bx bx-bar-chart-alt"></i>Services List</a>
                     </li>
                 </ul>
             </li>

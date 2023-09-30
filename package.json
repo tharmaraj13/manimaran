@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.4",
-    "@angular/cli": "~15.2.4",
+    "@angular/cli": "^15.2.0",
     "@angular/compiler-cli": "^15.2.0",
     "@types/datatables.net": "^1.10.24",
     "@types/datatables.net-buttons": "^1.4.7",

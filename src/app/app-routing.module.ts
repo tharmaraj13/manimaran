@@ -21,6 +21,10 @@ import { ViewLocationComponent } from './view-location/view-location.component';
 import { AddLocationComponent } from './add-location/add-location.component';
 import { AdvanceInfoComponent } from './advance-info/advance-info.component';
 import { ViewAdvanceComponent } from './view-advance/view-advance.component';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
+import { ViewMaintenanceComponent } from './view-maintenance/view-maintenance.component';
+import { ViewServicesComponent } from './view-services/view-services.component';
+import { AddServicesComponent } from './add-services/add-services.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -45,6 +49,12 @@ const routes: Routes = [
   {path:'add-advance',component:AdvanceInfoComponent},
   {path:'add-advance/:id',component:AdvanceInfoComponent},
   {path:'advances',component:ViewAdvanceComponent,title:'Advances List'},
+  {path:'new-maintenance',component:MaintenanceComponent},
+  {path:'new-maintenance/:id',component:MaintenanceComponent},
+  {path:'maintenance-list',component:ViewMaintenanceComponent,title:'Maintenance List'},
+  {path:'add-service',component:AddServicesComponent},
+  {path:'add-service/:id',component:AddServicesComponent},
+  {path:'services-list',component:ViewServicesComponent,title:'Services List'},
   {path:'add-vendor',component:AddVendorComponent},
   {path:'add-vendor/:id',component:AddVendorComponent},
   {path:'company',component:CompanyComponent},

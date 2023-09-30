@@ -32,6 +32,10 @@ import { AddLocationComponent } from './add-location/add-location.component';
 import { ViewLocationComponent } from './view-location/view-location.component';
 import { AdvanceInfoComponent } from './advance-info/advance-info.component';
 import { ViewAdvanceComponent } from './view-advance/view-advance.component';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
+import { ViewMaintenanceComponent } from './view-maintenance/view-maintenance.component';
+import { ViewServicesComponent } from './view-services/view-services.component';
+import { AddServicesComponent } from './add-services/add-services.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,11 @@ import { ViewAdvanceComponent } from './view-advance/view-advance.component';
     AddLocationComponent,
     ViewLocationComponent,
     AdvanceInfoComponent,
-    ViewAdvanceComponent
+    ViewAdvanceComponent,
+    MaintenanceComponent,
+    ViewMaintenanceComponent,
+    ViewServicesComponent,
+    AddServicesComponent
   ],
   imports: [
     BrowserModule,

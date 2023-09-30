@@ -279,4 +279,52 @@ export class ApiserviceService {
     formData.append("id", id);
     return this.http.post(url, formData);
   }
+
+  add_maintenance(data: any): Observable<Object> {
+    var url = this.website + 'add_maintenance.php';
+    var formData = new FormData();
+    formData.append("values", JSON.stringify(data));
+    return this.http.post(url, formData);
+  }
+  view_maintenance_id(id:any): Observable<Object> {
+    var url = this.website + 'view_maintenance_id.php';
+    var formData = new FormData();
+    formData.append("id", id);
+    return this.http.post(url, formData);
+  }
+  view_maintenance(): Observable<Object> {
+    var url = this.website + 'view_maintenance.php';
+    var formData = new FormData();
+    return this.http.post(url, formData);
+  }
+  del_maintenance(id:any): Observable<Object> {
+    var url = this.website + 'del_maintenance.php';
+    var formData = new FormData();
+    formData.append("id", id);
+    return this.http.post(url, formData);
+  }
+  add_service(service: any,id:any): Observable<Object> {
+    var url = this.website + 'add_service.php';
+    var formData = new FormData();
+    formData.append("service", service);
+    formData.append("id", id);
+    return this.http.post(url, formData);
+  }
+  view_services(): Observable<Object> {
+    var url = this.website + 'view_services.php';
+    var formData = new FormData();
+    return this.http.post(url, formData);
+  }
+  view_service_id(id:any): Observable<Object> {
+    var url = this.website + 'view_service_id.php';
+    var formData = new FormData();
+    formData.append("id", id);
+    return this.http.post(url, formData);
+  }
+  del_services(id:any): Observable<Object> {
+    var url = this.website + 'del_services.php';
+    var formData = new FormData();
+    formData.append("id", id);
+    return this.http.post(url, formData);
+  }
 }
