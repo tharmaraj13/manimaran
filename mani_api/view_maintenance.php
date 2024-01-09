@@ -28,6 +28,7 @@ if ($check->num_rows > 0) {
         $resp_status->lm_date = Date('Y-m-d', $result['lm_date']);
         $resp_status->lorry_no = $result['number'] . ' | ' . $result['wheels'];
         $resp_status->odometer = $result['odometer'];
+        $resp_status->remarks = $result['remarks'];
         $service_used = json_decode($result['services']);
         foreach ($service_used as $service) {
             foreach ($service as $id => $value) {

@@ -21,6 +21,7 @@
                                                 <th>Lorry Details</th>
                                                 <th>Odometer</th>
                                                 <th>Services</th>
+                                                <th>Remarks</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -31,6 +32,7 @@
                                                 <td>{{prod.lorry_no}}</td>
                                                 <td>{{prod.odometer}}</td>
                                                 <td>{{prod.services}}</td>
+                                                <td>{{prod.remarks}}</td>
                                                 <td><a href="/new-maintenance/{{prod.id}}">Edit</a>
                                                     &nbsp;<a style="cursor: pointer;" (click)="remove(prod.id)">Remove</a></td>
                                             </tr>
