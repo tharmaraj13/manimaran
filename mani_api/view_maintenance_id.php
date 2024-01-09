@@ -19,6 +19,7 @@ if ($id == 'undefined') {
         $resp_status->lorry_no = $result['lorry_no'];
         $resp_status->odometer = $result['odometer'];
         $resp_status->services = $result['services'];
+        $resp_status->remarks = $result['remarks'];
     }
     else{
         $resp->status = 'error';

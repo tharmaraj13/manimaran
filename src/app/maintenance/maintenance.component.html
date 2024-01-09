@@ -14,7 +14,7 @@
                             <form class="row g-3" [formGroup]="myForm" (ngSubmit)="onSubmit()">
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="adv_date" class="form-label">Date</label>
                                             <input type="date" class="form-control" id="adv_date"
                                                 formControlName="adv_date">
@@ -22,7 +22,7 @@
                                                 *ngIf="myForm.get('adv_date').errors && myForm.get('adv_date').touched"><i
                                                     class="bi bi-exclamation-circle"></i> Date is required</small>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="lorry_no" class="form-label">Lorry No</label>
                                             <select class="form-select" id="lorry_no" formControlName="lorry_no">
                                                 <option value="" hidden>Select Lorry No</option>
@@ -35,13 +35,18 @@
                                                     class="bi bi-exclamation-circle"></i> Lorry Details is
                                                 required</small>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="adv_amount" class="form-label">Odometer</label>
                                             <input type="number" class="form-control" id="adv_amount"
                                                 formControlName="adv_amount">
                                             <small
                                                 *ngIf="myForm.get('adv_amount').errors && myForm.get('adv_amount').touched"><i
                                                     class="bi bi-exclamation-circle"></i> Odometer is required</small>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="remarks" class="form-label">Remarks</label>
+                                            <input type="text" class="form-control" id="remarks"
+                                                formControlName="remarks">
                                         </div>
                                         <div class="col-md-3" *ngFor="let service of services">
                                             <input type="checkbox" id="service{{service.id}}">

@@ -17,6 +17,7 @@ if ($check->num_rows > 0) {
         $resp_status->place = $result['onumber'];
         $resp_status->hplace = $result['onumber'];
         $resp_status->hname = $result['oname'];
+        $resp_status->location = $result['location'];
 
         $response[] = $resp_status;
     }

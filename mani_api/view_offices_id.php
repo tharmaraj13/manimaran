@@ -16,6 +16,7 @@ if ($id == 'undefined') {
         $resp_status->status = 'ok';
         $resp_status->hname = $result['oname'];
         $resp_status->hplace = $result['onumber'];
+        $resp_status->location = $result['location'];
     }
     else{
         $resp->status = 'error';

@@ -12,19 +12,21 @@ if ($id == NULL) {
     lm_date,
     lorry_no,
     odometer,
-    services
+    services,
+    remarks
 ) VALUES (
     '" . strtotime($array[0]) . "',
     '$array[1]',
     '$array[2]',
-    '".json_encode($array[3])."'
+    '".json_encode($array[3])."',
+    '$array[5]'
 );");
     mysqli_close($dbcon);
 } else {
     $check = $dbcon->query("SELECT * FROM maintenance where id='$id';");
     if ($check->num_rows > 0) {
         $result = mysqli_fetch_assoc($check);
-        $dbcon->query("UPDATE maintenance SET lm_date='" . strtotime($array[0]) . "',lorry_no='$array[1]',odometer='$array[2]',services='".json_encode($array[3])."' 
+        $dbcon->query("UPDATE maintenance SET lm_date='" . strtotime($array[0]) . "',lorry_no='$array[1]',odometer='$array[2]',remarks='$array[5]',services='".json_encode($array[3])."' 
         where id='$id';");
         mysqli_close($dbcon);
     }

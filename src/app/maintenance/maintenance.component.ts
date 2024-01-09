@@ -29,6 +29,7 @@ export class MaintenanceComponent {
         adv_date: new FormControl('', Validators.required),
         lorry_no: new FormControl('', Validators.required),
         adv_amount: new FormControl('', Validators.required),
+        remarks: new FormControl('', Validators.required),
       }
     );
   }
@@ -38,6 +39,7 @@ export class MaintenanceComponent {
         this.myForm.get('adv_date').setValue(res.lm_date);
         this.myForm.get('lorry_no').setValue(res.lorry_no);
         this.myForm.get('adv_amount').setValue(res.odometer);
+        this.myForm.get('remarks').setValue(res.remarks);
         JSON.parse(res.services).forEach((val: any) => {
           const ele = document.querySelector('#service' + Object.keys(val)[0]) as HTMLInputElement;
           ele.checked=Object.values(val)[0] as boolean;
@@ -62,6 +64,7 @@ export class MaintenanceComponent {
       data.push(this.myForm.get('adv_amount').value);
       data.push(services_used);
       data.push(this.id);
+      data.push(this.myForm.get('remarks').value);
       this.apiservice.add_maintenance(data).subscribe((res: any) => {
         Swal.fire({
           title: 'Maintenance Added Successfully',

@@ -203,12 +203,13 @@ export class ApiserviceService {
     formData.append("id", id);
     return this.http.post(url, formData);
   }
-  add_office(hname: any,hplace:any,id:any): Observable<Object> {
+  add_office(hname: any,hplace:any,id:any,location:any): Observable<Object> {
     var url = this.website + 'add_office.php';
     var formData = new FormData();
     formData.append("hname", hname);
     formData.append("hplace", hplace);
     formData.append("id", id);
+    formData.append("location", location);
     return this.http.post(url, formData);
   }
   view_offices(): Observable<Object> {

@@ -24,6 +24,17 @@
                                             formControlName="hplace">
                                         <small *ngIf="myForm.get('hplace').errors && myForm.get('hplace').touched"><i class="bi bi-exclamation-circle"></i> Number is required</small>
                                     </div>
+                                    <div class="col-md-4">
+                                        <label for="location" class="form-label">Location</label>
+                                        <input type="text" class="form-control" id="location" formControlName="location"
+                                        autocomplete="off" list="countrydata" role="combobox">
+                                        <datalist id="countrydata" role="listbox">
+                                            <option className="my-option" *ngFor="let loc of locations1">{{loc.name}}</option>
+                                        </datalist>
+                                        <small *ngIf="myForm.get('location').errors && myForm.get('location').touched"><i
+                                                class="bi bi-exclamation-circle"></i> Location is
+                                            required</small>
+                                    </div>
                                     <div class="row g-3 mt-3">
                                         <div class="col-md-4">
                                             <div class="d-grid">

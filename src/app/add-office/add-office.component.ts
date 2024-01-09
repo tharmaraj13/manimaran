@@ -12,20 +12,26 @@ import { ApiserviceService } from '../apiservice.service';
 export class AddOfficeComponent {
   myForm: FormGroup | any;
   id:any;
+  locations1:any=[];
   constructor(private apiservice: ApiserviceService, private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(){
     this.id = this.route.snapshot.params['id'];
+    this.apiservice.view_city().subscribe((res) => {
+      this.locations1 = res;
+    });
     this.myForm = new FormGroup(
       {
         hname: new FormControl('', Validators.required),
         hplace: new FormControl('', Validators.required),
+        location: new FormControl('', Validators.required),
       }
     );
     this.apiservice.view_offices_id(this.id).subscribe((res:any) => {
       if(res.status=='ok'){
         this.myForm.get('hname').setValue(res.hname);
         this.myForm.get('hplace').setValue(res.hplace);
+        this.myForm.get('location').setValue(res.location);
       }
     })
   }
@@ -34,7 +40,12 @@ export class AddOfficeComponent {
     this.myForm.markAllAsTouched();
     // alert('Data Added Successfully');
     if (this.myForm.valid) {
-      this.apiservice.add_office(this.myForm.get('hname').value,this.myForm.get('hplace').value,this.id).subscribe((res: any) => {
+      this.apiservice.add_office(
+        this.myForm.get('hname').value,
+        this.myForm.get('hplace').value,
+        this.id,
+        this.myForm.get('location').value
+        ).subscribe((res: any) => {
         if(res.status=='ok'){
           Swal.fire({
             title: 'Office Added Successfully',

@@ -19,6 +19,7 @@
                                                 <th>S.No</th>
                                                 <th>Office Name</th>
                                                 <th>Number</th>
+                                                <th>Location</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -27,6 +28,7 @@
                                                 <td>{{i+1}}</td>
                                                 <td>{{prod.hname}}</td>
                                                 <td>{{prod.hplace}}</td>
+                                                <td>{{prod.location}}</td>
                                                 <td><a href="/add-office/{{prod.id}}">Edit</a>
                                                     &nbsp;<a style="cursor: pointer;" (click)="remove(prod.id)">Remove</a></td>
                                             </tr>

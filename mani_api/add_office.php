@@ -8,6 +8,7 @@ include 'config.php';
 
 $hname = $_POST['hname'];
 $hplace = $_POST['hplace'];
+$location = $_POST['location'];
 $id = $_POST['id'];
 
 $resp_status = new stdClass;
@@ -17,19 +18,21 @@ if ($id == 'undefined') {
         $resp_status->status = 'error';
         $resp_status->message = 'Already Exist';
     } else {
-        $dbcon->query("INSERT INTO office_details (oname,onumber) VALUES ('$hname','$hplace');");
+        $dbcon->query("INSERT INTO office_details (oname,onumber,`location`) VALUES ('$hname','$hplace','$location');");
         $resp_status->status = 'ok';
         $resp_status->id = $dbcon->insert_id;
         $resp_status->name = $hname;
         $resp_status->place = $hplace;
+        $resp_status->location = $location;
     }
     mysqli_close($dbcon);
 } else {
-    $dbcon->query("UPDATE office_details SET oname='$hname', onumber='$hplace' where id='$id';");
+    $dbcon->query("UPDATE office_details SET oname='$hname', onumber='$hplace', `location`='$location' where id='$id';");
     $resp_status->status = 'ok';
     $resp_status->id = $id;
     $resp_status->name = $hname;
     $resp_status->place = $hplace;
+    $resp_status->location = $location;
     mysqli_close($dbcon);
 }
 echo json_encode($resp_status);
