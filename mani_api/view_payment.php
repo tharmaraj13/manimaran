@@ -25,6 +25,7 @@ if ($check->num_rows > 0) {
         $resp_status->weight = $result['weight'];
         $resp_status->freight = $result['freight'];
         $resp_status->advance_amt = $result['advance_amt'];
+        $resp_status->balance = $result['freight'] - $result['advance_amt'];
         $resp_status->advance_paid = $result['advance_paid'];
         $resp_status->advance_date = $result['advance_date']=='' ? '': Date('Y-m-d',$result['advance_date']);
         $resp_status->commission = $result['commission'];
