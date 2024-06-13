@@ -16,8 +16,9 @@ if ($check1->num_rows > 0) {
     }
 }
 if ($id == 'undefined') {
-    $resp->status = 'error1';
+    $resp_status->status = 'error1';
     $resp_status->data = $data;
+    mysqli_close($dbcon);
 } else {
     $check = $dbcon->query("SELECT * FROM cities where id='$id';");
     if ($check->num_rows > 0) {
@@ -27,7 +28,7 @@ if ($id == 'undefined') {
         $resp_status->hplace = $result['state'];
         $resp_status->data = $data;
     } else {
-        $resp->status = 'error';
+        $resp_status->status = 'error';
     }
     mysqli_close($dbcon);
 }
