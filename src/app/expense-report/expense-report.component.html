@@ -24,7 +24,7 @@
                                         </div> -->
                                         <div class="col-md-4">
                                             <label for="lorry_no" class="form-label">Lorry No</label>
-                                            <select class="form-select" id="lorry_no" formControlName="lorry_no">
+                                            <select class="form-select" id="lorry_no" formControlName="lorry_no" (change)="fetchLoad()">
                                                 <option value="" hidden>Select Lorry No</option>
                                                 <option *ngFor="let vend of prod_names" value="{{vend.id}}">
                                                     {{vend.name}}
@@ -36,12 +36,20 @@
                                                 required</small>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="adv_amount" class="form-label">Advance Amount</label>
-                                            <input type="number" class="form-control" id="adv_amount"
-                                                formControlName="adv_amount">
+                                            <label for="from_date" class="form-label">From Date</label>
+                                            <input type="date" class="form-control" id="from_date"
+                                                formControlName="from_date" (change)="fetchLoad()">
                                             <small
-                                                *ngIf="myForm.get('adv_amount').errors && myForm.get('adv_amount').touched"><i
-                                                    class="bi bi-exclamation-circle"></i> Amount is required</small>
+                                                *ngIf="myForm.get('from_date').errors && myForm.get('from_date').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Date is required</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="to_date" class="form-label">To Date</label>
+                                            <input type="date" class="form-control" id="to_date"
+                                                formControlName="to_date" (change)="fetchLoad()">
+                                            <small
+                                                *ngIf="myForm.get('to_date').errors && myForm.get('to_date').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Date is required</small>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="start_km" class="form-label">Start KM</label>
@@ -65,7 +73,7 @@
                                                 formControlName="run_km" readonly>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="diesel" class="form-label">Diesel Reading</label>
+                                            <label for="diesel" class="form-label">Diesel (Ltrs)</label>
                                             <input type="number" class="form-control" id="diesel"
                                                 (change)="balance_km()" formControlName="diesel">
                                             <small
@@ -78,7 +86,15 @@
                                                 formControlName="mileage" readonly>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="driver" class="form-label">Driver Name</label>
+                                            <label for="adv_amount" class="form-label">Advance Amount</label>
+                                            <input type="number" class="form-control" id="adv_amount"
+                                                formControlName="adv_amount">
+                                            <small
+                                                *ngIf="myForm.get('adv_amount').errors && myForm.get('adv_amount').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Amount is required</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="driver" class="form-label">Driver1 Name</label>
                                             <input type="text" class="form-control" id="driver"
                                                 formControlName="driver">
                                             <small
@@ -86,28 +102,29 @@
                                                     class="bi bi-exclamation-circle"></i> Driver is required</small>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="cleaner" class="form-label">Cleaner Name</label>
+                                            <label for="cleaner" class="form-label">Driver2 Name</label>
                                             <input type="text" class="form-control" id="cleaner"
                                                 formControlName="cleaner">
                                             <small
                                                 *ngIf="myForm.get('cleaner').errors && myForm.get('cleaner').touched"><i
                                                     class="bi bi-exclamation-circle"></i> Cleaner is required</small>
                                         </div>
+                                        <div class="col-md-4"></div>
                                         <div class="col-md-4">
-                                            <label for="from_date" class="form-label">From Date</label>
-                                            <input type="date" class="form-control" id="from_date"
-                                                formControlName="from_date">
+                                            <label for="bill" class="form-label">As Per Bill</label>
+                                            <input type="number" class="form-control" id="bill"
+                                                formControlName="bill">
                                             <small
-                                                *ngIf="myForm.get('from_date').errors && myForm.get('from_date').touched"><i
-                                                    class="bi bi-exclamation-circle"></i> Date is required</small>
+                                                *ngIf="myForm.get('bill').errors && myForm.get('bill').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Bill is required</small>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="to_date" class="form-label">To Date</label>
-                                            <input type="date" class="form-control" id="to_date"
-                                                formControlName="to_date">
+                                            <label for="pc_charge" class="form-label">PC Charges</label>
+                                            <input type="number" class="form-control" id="pc_charge"
+                                                formControlName="pc_charge">
                                             <small
-                                                *ngIf="myForm.get('to_date').errors && myForm.get('to_date').touched"><i
-                                                    class="bi bi-exclamation-circle"></i> Date is required</small>
+                                                *ngIf="myForm.get('pc_charge').errors && myForm.get('pc_charge').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> PC Charge is required</small>
                                         </div>
                                     </div>
                                 </div>

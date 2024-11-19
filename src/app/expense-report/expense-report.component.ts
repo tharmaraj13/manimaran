@@ -39,30 +39,22 @@ export class ExpenseReportComponent {
         cleaner: new FormControl('', Validators.required),
         from_date: new FormControl('', Validators.required),
         to_date: new FormControl('', Validators.required),
+        bill: new FormControl('', Validators.required),
+        pc_charge: new FormControl('', Validators.required),
       }
     );
-    if (this.id) {
-      this.setLoadRowsdata([{
-        date: '2024-10-12',
-        startLocation: 'Trichy',
-        endLocation: 'Coimbatore',
-        load: 'cotton',
-        ton: 1.5,
-        freight: 1500,
-        commission: 230,
-        loadCharge: 12,
-        unloadCharge: 10
-      }]);
+  }
+  fetchLoad() {
+    const lorry_no = this.myForm.get('lorry_no').value;
+    const from_date = this.myForm.get('from_date').value;
+    const to_date = this.myForm.get('to_date').value;
+    if (lorry_no && from_date && to_date) {
+      this.apiservice.view_load([lorry_no, from_date, to_date]).subscribe((res: any) => {
+        if (res.length > 0) {
+          this.setLoadRowsdata(res);
+        }
+      });
     }
-    // this.apiservice.view_advance_id(this.id).subscribe((res: any) => {
-    //   if (res.status == 'ok') {
-    //     this.myForm.get('adv_date').setValue(res.adv_date);
-    //     this.myForm.get('lorry_no').setValue(res.lorry_no);
-    //     this.myForm.get('adv_amount').setValue(res.adv_amount);
-    //     this.myForm.get('pay_mode').setValue(res.pay_mode);
-    //     this.balance_km();
-    //   }
-    // });
   }
   balance_km() {
     this.myForm.get('run_km').setValue(this.myForm.get('end_km').value - this.myForm.get('start_km').value);
@@ -83,6 +75,7 @@ export class ExpenseReportComponent {
     return this.myForm.get('miscRows') as FormArray;
   }
   setLoadRowsdata(datas: any) {
+    this.loadRows.clear();
     datas.forEach((data: any) => {
       this.loadRows.push(this.fb.group({
         date: [data.date],
