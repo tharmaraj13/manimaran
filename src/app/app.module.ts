@@ -36,6 +36,7 @@ import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { ViewMaintenanceComponent } from './view-maintenance/view-maintenance.component';
 import { ViewServicesComponent } from './view-services/view-services.component';
 import { AddServicesComponent } from './add-services/add-services.component';
+import { ExpenseReportComponent } from './expense-report/expense-report.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { AddServicesComponent } from './add-services/add-services.component';
     MaintenanceComponent,
     ViewMaintenanceComponent,
     ViewServicesComponent,
-    AddServicesComponent
+    AddServicesComponent,
+    ExpenseReportComponent
   ],
   imports: [
     BrowserModule,

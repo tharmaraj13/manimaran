@@ -1,0 +1,313 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<!--start page wrapper -->
+<div class="page-wrapper">
+    <div class="page-content">
+        <div class="card">
+            <div class="card-body p-4">
+                <h5 class="card-title">Add New Expense</h5>
+                <hr />
+                <div class="form-body mt-4">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <form class="row g-3" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                                <div class="border border-3 p-4 rounded">
+                                    <div class="row g-3">
+                                        <!-- <div class="col-md-4">
+                                            <label for="adv_date" class="form-label">Date</label>
+                                            <input type="date" class="form-control" id="adv_date"
+                                                formControlName="adv_date">
+                                            <small
+                                                *ngIf="myForm.get('adv_date').errors && myForm.get('adv_date').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Date is required</small>
+                                        </div> -->
+                                        <div class="col-md-4">
+                                            <label for="lorry_no" class="form-label">Lorry No</label>
+                                            <select class="form-select" id="lorry_no" formControlName="lorry_no">
+                                                <option value="" hidden>Select Lorry No</option>
+                                                <option *ngFor="let vend of prod_names" value="{{vend.id}}">
+                                                    {{vend.name}}
+                                                </option>
+                                            </select>
+                                            <small
+                                                *ngIf="myForm.get('lorry_no').errors && myForm.get('lorry_no').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Lorry Details is
+                                                required</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="adv_amount" class="form-label">Advance Amount</label>
+                                            <input type="number" class="form-control" id="adv_amount"
+                                                formControlName="adv_amount">
+                                            <small
+                                                *ngIf="myForm.get('adv_amount').errors && myForm.get('adv_amount').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Amount is required</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="start_km" class="form-label">Start KM</label>
+                                            <input type="number" class="form-control" id="start_km"
+                                                formControlName="start_km" (change)="balance_km()">
+                                            <small
+                                                *ngIf="myForm.get('start_km').errors && myForm.get('start_km').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Start KM is required</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="end_km" class="form-label">End KM</label>
+                                            <input type="number" class="form-control" id="end_km"
+                                                (change)="balance_km()" formControlName="end_km">
+                                            <small
+                                                *ngIf="myForm.get('end_km').errors && myForm.get('end_km').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> End KM is required</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="run_km" class="form-label">Run KM</label>
+                                            <input type="number" class="form-control" id="run_km"
+                                                formControlName="run_km" readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="diesel" class="form-label">Diesel Reading</label>
+                                            <input type="number" class="form-control" id="diesel"
+                                                (change)="balance_km()" formControlName="diesel">
+                                            <small
+                                                *ngIf="myForm.get('diesel').errors && myForm.get('diesel').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Diesel is required</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="mileage" class="form-label">Mileage</label>
+                                            <input type="number" class="form-control" id="mileage"
+                                                formControlName="mileage" readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="driver" class="form-label">Driver Name</label>
+                                            <input type="text" class="form-control" id="driver"
+                                                formControlName="driver">
+                                            <small
+                                                *ngIf="myForm.get('driver').errors && myForm.get('driver').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Driver is required</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="cleaner" class="form-label">Cleaner Name</label>
+                                            <input type="text" class="form-control" id="cleaner"
+                                                formControlName="cleaner">
+                                            <small
+                                                *ngIf="myForm.get('cleaner').errors && myForm.get('cleaner').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Cleaner is required</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="from_date" class="form-label">From Date</label>
+                                            <input type="date" class="form-control" id="from_date"
+                                                formControlName="from_date">
+                                            <small
+                                                *ngIf="myForm.get('from_date').errors && myForm.get('from_date').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Date is required</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="to_date" class="form-label">To Date</label>
+                                            <input type="date" class="form-control" id="to_date"
+                                                formControlName="to_date">
+                                            <small
+                                                *ngIf="myForm.get('to_date').errors && myForm.get('to_date').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Date is required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border border-3 p-4 rounded">
+                                    <h5>Load Details &nbsp;<button type="button" class="btn btn-success"
+                                            (click)="addLoadRow()">Add</button></h5>
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Start Location</th>
+                                                    <th>End Location</th>
+                                                    <th>Load</th>
+                                                    <th>Ton</th>
+                                                    <th>Freight</th>
+                                                    <th>Commission</th>
+                                                    <th>Load Charge</th>
+                                                    <th>Unload Charge</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody formArrayName="loadRows">
+                                                <tr *ngFor="let row of loadRows.controls; let i = index"
+                                                    [formGroupName]="i">
+                                                    <td><input type="date" formControlName="date"
+                                                            class="form-control" /></td>
+                                                    <td><input type="text" formControlName="startLocation"
+                                                            class="form-control" /></td>
+                                                    <td><input type="text" formControlName="endLocation"
+                                                            class="form-control" /></td>
+                                                    <td><input type="text" formControlName="load"
+                                                            class="form-control" /></td>
+                                                    <td><input type="number" formControlName="ton"
+                                                            class="form-control" /></td>
+                                                    <td><input type="number" formControlName="freight"
+                                                            class="form-control" /></td>
+                                                    <td><input type="number" formControlName="commission"
+                                                            class="form-control" /></td>
+                                                    <td><input type="number" formControlName="loadCharge"
+                                                            class="form-control" /></td>
+                                                    <td><input type="number" formControlName="unloadCharge"
+                                                            class="form-control" /></td>
+                                                    <td>
+                                                        <button class="btn btn-success" (click)="delLoadRow(i)"><i
+                                                                class='bx bx-trash'></i></button>
+                                                    </td>
+                                                </tr>
+                                                <!-- Total Amount Row -->
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><strong>Total</strong></td>
+                                                    <td><strong>{{ getTotal(1,'ton') }}</strong></td>
+                                                    <td><strong>{{ getTotal(1,'freight') }}</strong></td>
+                                                    <td><strong>{{ getTotal(1,'commission') }}</strong></td>
+                                                    <td><strong>{{ getTotal(1,'loadCharge') }}</strong></td>
+                                                    <td><strong>{{ getTotal(1,'unloadCharge') }}</strong></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="border border-3 p-4 rounded">
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <h5>Diesel &nbsp;<button type="button" class="btn btn-success"
+                                                    (click)="addDieselRow()">Add</button></h5>
+                                            <div class="table-responsive">
+                                                <table class="table mb-0">
+                                                    <thead class="table-light">
+                                                        <tr>
+                                                            <th>Date</th>
+                                                            <th>Qty</th>
+                                                            <th>Amount</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody formArrayName="dieselRows">
+                                                        <tr *ngFor="let row of dieselRows.controls; let i = index"
+                                                            [formGroupName]="i">
+                                                            <td><input type="date" formControlName="date"
+                                                                    class="form-control" /></td>
+                                                            <td><input type="number" formControlName="qty"
+                                                                    class="form-control" /></td>
+                                                            <td><input type="number" formControlName="amount"
+                                                                    class="form-control" /></td>
+                                                            <td>
+                                                                <button class="btn btn-success"
+                                                                    (click)="delDieselRow(i)"><i
+                                                                        class='bx bx-trash'></i></button>
+                                                            </td>
+                                                        </tr>
+                                                        <!-- Total Amount Row -->
+                                                        <tr>
+                                                            <td><strong>Total</strong></td>
+                                                            <td><strong>{{ getTotal(2,'qty') }}</strong></td>
+                                                            <td><strong>{{ getTotal(2,'amount') }}</strong></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h5>RTO &nbsp;<button type="button" class="btn btn-success"
+                                                    (click)="addRtoRow()">Add</button></h5>
+                                            <div class="table-responsive">
+                                                <table class="table mb-0">
+                                                    <thead class="table-light">
+                                                        <tr>
+                                                            <th>Location</th>
+                                                            <th>Up</th>
+                                                            <th>Down</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody formArrayName="rtoRows">
+                                                        <tr *ngFor="let row of rtoRows.controls; let i = index"
+                                                            [formGroupName]="i">
+                                                            <td><input type="text" formControlName="location"
+                                                                    class="form-control" /></td>
+                                                            <td><input type="number" formControlName="up"
+                                                                    class="form-control" /></td>
+                                                            <td><input type="number" formControlName="down"
+                                                                    class="form-control" /></td>
+                                                            <td>
+                                                                <button class="btn btn-success"
+                                                                    (click)="delRtoRow(i)"><i
+                                                                        class='bx bx-trash'></i></button>
+                                                            </td>
+                                                        </tr>
+                                                        <!-- Total Amount Row -->
+                                                        <tr>
+                                                            <td><strong>Total</strong></td>
+                                                            <td><strong>{{ getTotal(3,'up') }}</strong></td>
+                                                            <td><strong>{{ getTotal(3,'down') }}</strong></td>
+                                                            <td><strong>{{ getTotal(3,'up') + getTotal(3,'down') }}</strong></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h5>Misc. &nbsp;<button type="button" class="btn btn-success"
+                                                    (click)="addMiscRow()">Add</button></h5>
+                                            <div class="table-responsive">
+                                                <table class="table mb-0">
+                                                    <thead class="table-light">
+                                                        <tr>
+                                                            <th>Particular</th>
+                                                            <th>amount</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody formArrayName="miscRows">
+                                                        <tr *ngFor="let row of miscRows.controls; let i = index"
+                                                            [formGroupName]="i">
+                                                            <td><input type="text" formControlName="particular"
+                                                                    class="form-control" /></td>
+                                                            <td><input type="number" formControlName="amount"
+                                                                    class="form-control" /></td>
+                                                            <td>
+                                                                <button class="btn btn-success"
+                                                                    (click)="delMiscRow(i)"><i
+                                                                        class='bx bx-trash'></i></button>
+                                                            </td>
+                                                        </tr>
+                                                        <!-- Total Amount Row -->
+                                                        <tr>
+                                                            <td><strong>Total</strong></td>
+                                                            <td><strong>{{ getTotal(4,'amount') }}</strong></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 mt-3">
+                                    <div class="col-md-4">
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-light">Save Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div><!--end row-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--end page wrapper -->
+<app-footer></app-footer>

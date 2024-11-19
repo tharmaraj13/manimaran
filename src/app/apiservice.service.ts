@@ -7,7 +7,6 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class ApiserviceService {
-  // website = "http://10.10.10.195/mur_api/";
   website = "/mani_api/";
   // website = "http://3.81.61.104/mani_api/";
   constructor(private http: HttpClient, private Cookies: CookieService) { }
