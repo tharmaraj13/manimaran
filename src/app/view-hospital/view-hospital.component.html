@@ -19,6 +19,7 @@
                                                 <th>S.No</th>
                                                 <th>Lorry No</th>
                                                 <th>Wheels</th>
+                                                <th>Tax Rate</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -27,6 +28,7 @@
                                                 <td>{{i+1}}</td>
                                                 <td>{{prod.hname}}</td>
                                                 <td>{{prod.hplace}}</td>
+                                                <td>{{prod.taxRate}}</td>
                                                 <td><a href="/add-hospital/{{prod.id}}">Edit</a>
                                                     &nbsp;<a style="cursor: pointer;" (click)="remove(prod.id)">Remove</a></td>
                                             </tr>

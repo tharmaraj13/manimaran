@@ -15,6 +15,7 @@ export class ExpenseReportComponent {
   myForm: FormGroup | any;
   prod_names: any;
   id: any;
+  taxRate: any = 0;
 
   ngOnInit(): void {
     this.apiservice.view_names().subscribe((res) => {
@@ -27,39 +28,148 @@ export class ExpenseReportComponent {
         dieselRows: this.fb.array([]),
         rtoRows: this.fb.array([]),
         miscRows: this.fb.array([]),
-        // adv_date: new FormControl('', Validators.required),
         lorry_no: new FormControl('', Validators.required),
         adv_amount: new FormControl('', Validators.required),
         start_km: new FormControl('', Validators.required),
         end_km: new FormControl('', Validators.required),
-        run_km: new FormControl('', Validators.required),
-        diesel: new FormControl('', Validators.required),
-        mileage: new FormControl('', Validators.required),
-        driver: new FormControl('', Validators.required),
-        cleaner: new FormControl('', Validators.required),
+        run_km: new FormControl(0, Validators.required),
+        diesel: new FormControl(0, Validators.required),
+        mileage: new FormControl(0, Validators.required),
+        driver1: new FormControl('', Validators.required),
+        driver2: new FormControl('', Validators.required),
         from_date: new FormControl('', Validators.required),
         to_date: new FormControl('', Validators.required),
         bill: new FormControl('', Validators.required),
         pc_charge: new FormControl('', Validators.required),
+        rto_charge: new FormControl(0, Validators.required),
+        diesel_amount: new FormControl(0, Validators.required),
+        departure: new FormControl('', Validators.required),
+        via: new FormControl('', Validators.required),
+        destination: new FormControl('', Validators.required),
+        load_details: new FormControl('', Validators.required),
+        weight_details: new FormControl('', Validators.required),
+        freight_charges: new FormControl(0, Validators.required),
+        loading_charges: new FormControl(0, Validators.required),
+        unloading_charges: new FormControl(0, Validators.required),
+        misc_charges: new FormControl(0, Validators.required),
+        driver_wages: new FormControl(0, Validators.required),
+        total_exp: new FormControl(0, Validators.required),
+        balance: new FormControl(0, Validators.required),
       }
     );
+    this.subscribeToDieselRows();
+    if (this.id) {
+      this.apiservice.view_expense_id(this.id).subscribe((res: any) => {
+        if (res.status == 'ok') {
+          this.myForm.patchValue(res.data);
+          this.setDieselRowsdata(res?.dieselRows || []);
+          this.setRtoRowsdata(res?.rtoRows || []);
+          this.setMiscRowsdata(res?.miscRows || []);
+          this.fetchLoad();
+        }
+      });
+    }
   }
   fetchLoad() {
     const lorry_no = this.myForm.get('lorry_no').value;
     const from_date = this.myForm.get('from_date').value;
     const to_date = this.myForm.get('to_date').value;
     if (lorry_no && from_date && to_date) {
-      this.apiservice.view_load([lorry_no, from_date, to_date]).subscribe((res: any) => {
+      this.apiservice.view_load([lorry_no, from_date, to_date, this.id]).subscribe((res: any) => {
         if (res.length > 0) {
+          this.taxRate = res[0].taxRate;
           this.setLoadRowsdata(res);
         }
       });
     }
   }
+  subscribeToDieselRows() {
+    this.dieselRows.valueChanges.subscribe(() => {
+      this.updateDieselValues();
+    });
+    this.rtoRows.valueChanges.subscribe(() => {
+      this.updateRtoValues();
+    });
+    this.loadRows.valueChanges.subscribe(() => {
+      this.updateLoadValues();
+    });
+    this.miscRows.valueChanges.subscribe(() => {
+      this.updateMiscValues();
+    });
+  }
+  updateDieselValues() {
+    const totalDiesel = this.getTotal(2, 'qty');
+    const totalAmt = this.getTotal(2, 'amount');
+    this.myForm.get('diesel')?.setValue(totalDiesel, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.myForm.get('diesel_amount')?.setValue(totalAmt, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.balance_km();
+    this.calculate_total();
+  }
+  updateRtoValues() {
+    const total = this.getTotal(3, 'up') + this.getTotal(3, 'down');
+    this.myForm.get('rto_charge')?.setValue(total, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.calculate_total();
+  }
+  updateMiscValues() {
+    const total = this.getTotal(4, 'amount');
+    this.myForm.get('misc_charges')?.setValue(total, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.calculate_total();
+  }
+  updateLoadValues() {
+    let departure = '';
+    let destination = '';
+    let via = '';
+    let load = '';
+    let ton = '';
+    let freight = 0;
+    let loading_charges = 0;
+    let unloading_charges = 0;
+    let driver_wages = 0;
+    const loadData = this.loadRows.value;
+    // Check if the data is not empty
+    if (loadData.length > 0) {
+      departure = loadData[0].startLocation; // First element's startLocation
+      destination = loadData[loadData.length - 1].endLocation; // Last element's endLocation
+      via = loadData.slice(0, -1).map((item: any) => item.endLocation).join("\n");
+      load = loadData.map((item: any) => item.load).join("\n");
+      ton = loadData.map((item: any) => item.ton).join("\n");
+      freight = this.getTotal(1, 'freight');
+      driver_wages = Math.round(freight * this.taxRate) / 100;
+      loading_charges = this.getTotal(1, 'loadCharge');
+      unloading_charges = this.getTotal(1, 'unloadCharge');
+    }
+    this.myForm.get('departure')?.setValue(departure, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.myForm.get('destination')?.setValue(destination, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.myForm.get('via')?.setValue(via, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.myForm.get('load_details')?.setValue(load, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.myForm.get('weight_details')?.setValue(ton, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.myForm.get('freight_charges')?.setValue(freight, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.myForm.get('loading_charges')?.setValue(loading_charges, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.myForm.get('unloading_charges')?.setValue(unloading_charges, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.myForm.get('driver_wages')?.setValue(driver_wages, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.calculate_total();
+  }
   balance_km() {
-    this.myForm.get('run_km').setValue(this.myForm.get('end_km').value - this.myForm.get('start_km').value);
-    const mileage = Math.round((this.myForm.get('run_km').value / this.myForm.get('diesel').value) * 100) / 100;
-    this.myForm.get('mileage').setValue(mileage);
+    if (this.myForm.get('start_km').value && this.myForm.get('end_km').value) {
+      this.myForm.get('run_km').setValue(this.myForm.get('end_km').value - this.myForm.get('start_km').value);
+    }
+    if (this.myForm.get('diesel').value) {
+      const mileage = Math.round((this.myForm.get('run_km').value / this.myForm.get('diesel').value) * 100) / 100;
+      this.myForm.get('mileage').setValue(mileage);
+    }
+  }
+  calculate_total() {
+    const total = this.myForm.get('diesel_amount').value +
+      +this.myForm.get('loading_charges').value +
+      +this.myForm.get('unloading_charges').value +
+      +this.myForm.get('misc_charges').value +
+      +this.myForm.get('rto_charge').value +
+      +this.myForm.get('pc_charge').value +
+      +this.myForm.get('bill').value +
+      +this.myForm.get('driver_wages').value;
+    this.myForm.get('total_exp').setValue(total);
+    const balance = this.myForm.get('total_exp').value - this.myForm.get('adv_amount').value;
+    this.myForm.get('balance').setValue(balance);
   }
   // Method to get the FormArray
   get loadRows(): FormArray {
@@ -74,10 +184,40 @@ export class ExpenseReportComponent {
   get miscRows(): FormArray {
     return this.myForm.get('miscRows') as FormArray;
   }
+  setDieselRowsdata(datas: any) {
+    this.dieselRows.clear();
+    datas.forEach((data: any) => {
+      this.dieselRows.push(this.fb.group({
+        date: [data.date],
+        qty: [Number(data.qty)],
+        amount: [Number(data.amount)],
+      }));
+    });
+  }
+  setRtoRowsdata(datas: any) {
+    this.rtoRows.clear();
+    datas.forEach((data: any) => {
+      this.rtoRows.push(this.fb.group({
+        location: [data.location],
+        up: [Number(data.up)],
+        down: [Number(data.down)],
+      }));
+    });
+  }
+  setMiscRowsdata(datas: any) {
+    this.miscRows.clear();
+    datas.forEach((data: any) => {
+      this.miscRows.push(this.fb.group({
+        particular: [data.particular],
+        amount: [Number(data.amount)],
+      }));
+    });
+  }
   setLoadRowsdata(datas: any) {
     this.loadRows.clear();
     datas.forEach((data: any) => {
       this.loadRows.push(this.fb.group({
+        id: [data.id],
         date: [data.date],
         startLocation: [data.startLocation],
         endLocation: [data.endLocation],
@@ -93,6 +233,7 @@ export class ExpenseReportComponent {
   // Method to add a new row
   addLoadRow() {
     this.loadRows.push(this.fb.group({
+      id: [''],
       date: [''],
       startLocation: [''],
       endLocation: [''],
@@ -169,21 +310,21 @@ export class ExpenseReportComponent {
   }
   onSubmit() {
     this.myForm.markAllAsTouched();
-    console.log(this.loadRows.value);
-    // if (this.myForm.valid) {
-    //   var data = Array();
-    //   data.push(this.myForm.get('adv_date').value);
-    //   data.push(this.myForm.get('lorry_no').value);
-    //   data.push(this.myForm.get('adv_amount').value);
-    //   data.push(this.myForm.get('pay_mode').value);
-    //   data.push(this.id);
-    //   this.apiservice.add_advance(data).subscribe((res: any) => {
-    //     Swal.fire({
-    //       title: 'Advance Added Successfully',
-    //       icon: 'success',
-    //     });
-    //     this.router.navigate(['advances'])
-    //   });
-    // }
+    const formData = { ...this.myForm.value };
+    const testData = formData.loadRows.map((e: any) => ({ lorry_details_id: e.id, loading_charge: e.loadCharge, unloading_charge: e.unloadCharge }));
+    formData.loadRows = testData;
+    console.log(formData);
+    if (this.myForm.valid) {
+      var data = Array();
+      data.push(formData);
+      data.push(this.id);
+      this.apiservice.add_expense(data).subscribe((res: any) => {
+        Swal.fire({
+          title: 'Expense Added Successfully',
+          icon: 'success',
+        });
+        this.router.navigate(['expenses']);
+      });
+    }
   }
 }

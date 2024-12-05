@@ -24,6 +24,12 @@
                                             formControlName="hplace">
                                         <small *ngIf="myForm.get('hplace').errors && myForm.get('hplace').touched"><i class="bi bi-exclamation-circle"></i> Wheels is required</small>
                                     </div>
+                                    <div class="col-md-4">
+                                        <label for="taxRate" class="form-label">Wheels</label>
+                                        <input type="number" class="form-control" id="taxRate"
+                                            formControlName="taxRate">
+                                        <small *ngIf="myForm.get('taxRate').errors && myForm.get('taxRate').touched"><i class="bi bi-exclamation-circle"></i> Tax Rate is required</small>
+                                    </div>
                                     <div class="row g-3 mt-3">
                                         <div class="col-md-4">
                                             <div class="d-grid">

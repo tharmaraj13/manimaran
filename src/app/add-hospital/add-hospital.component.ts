@@ -20,12 +20,14 @@ export class AddHospitalComponent {
       {
         hname: new FormControl('', Validators.required),
         hplace: new FormControl('', Validators.required),
+        taxRate: new FormControl('', Validators.required),
       }
     );
     this.apiservice.view_hospitals_id(this.id).subscribe((res:any) => {
       if(res.status=='ok'){
         this.myForm.get('hname').setValue(res.hname);
         this.myForm.get('hplace').setValue(res.hplace);
+        this.myForm.get('taxRate').setValue(res.taxRate);
       }
     })
   }
@@ -34,7 +36,10 @@ export class AddHospitalComponent {
     this.myForm.markAllAsTouched();
     // alert('Data Added Successfully');
     if (this.myForm.valid) {
-      this.apiservice.add_hospital(this.myForm.get('hname').value,this.myForm.get('hplace').value,this.id).subscribe((res: any) => {
+      this.apiservice.add_hospital(this.myForm.get('hname').value,
+      this.myForm.get('hplace').value,
+      this.myForm.get('taxRate').value,
+      this.id).subscribe((res: any) => {
         if(res.status=='ok'){
           Swal.fire({
             title: 'Lorry Added Successfully',

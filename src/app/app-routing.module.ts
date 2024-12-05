@@ -26,6 +26,7 @@ import { ViewMaintenanceComponent } from './view-maintenance/view-maintenance.co
 import { ViewServicesComponent } from './view-services/view-services.component';
 import { AddServicesComponent } from './add-services/add-services.component';
 import { ExpenseReportComponent } from './expense-report/expense-report.component';
+import { ExpenseDataComponent } from './expense-data/expense-data.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -51,6 +52,7 @@ const routes: Routes = [
   { path: 'add-advance/:id', component: AdvanceInfoComponent },
   { path: 'add-expense', component: ExpenseReportComponent, title: 'Add Expense' },
   { path: 'add-expense/:id', component: ExpenseReportComponent, title: 'Edit Expense' },
+  { path: 'expenses', component: ExpenseDataComponent, title: 'Expense Report' },
   { path: 'advances', component: ViewAdvanceComponent, title: 'Advances List' },
   { path: 'new-maintenance', component: MaintenanceComponent },
   { path: 'new-maintenance/:id', component: MaintenanceComponent },

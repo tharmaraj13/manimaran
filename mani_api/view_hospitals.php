@@ -13,10 +13,11 @@ if ($check->num_rows > 0) {
         $result = mysqli_fetch_assoc($check);
         $resp_status = new stdClass;
         $resp_status->id = $result['id'];
-        $resp_status->name = $result['number'].", ".$result['wheels'];
+        $resp_status->name = $result['number'] . ", " . $result['wheels'];
         $resp_status->place = $result['wheels'];
         $resp_status->hplace = $result['wheels'];
         $resp_status->hname = $result['number'];
+        $resp_status->taxRate = (float)$result['taxRate'];
 
         $response[] = $resp_status;
     }

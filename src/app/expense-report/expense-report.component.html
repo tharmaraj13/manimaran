@@ -14,17 +14,10 @@
                             <form class="row g-3" [formGroup]="myForm" (ngSubmit)="onSubmit()">
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
-                                        <!-- <div class="col-md-4">
-                                            <label for="adv_date" class="form-label">Date</label>
-                                            <input type="date" class="form-control" id="adv_date"
-                                                formControlName="adv_date">
-                                            <small
-                                                *ngIf="myForm.get('adv_date').errors && myForm.get('adv_date').touched"><i
-                                                    class="bi bi-exclamation-circle"></i> Date is required</small>
-                                        </div> -->
                                         <div class="col-md-4">
                                             <label for="lorry_no" class="form-label">Lorry No</label>
-                                            <select class="form-select" id="lorry_no" formControlName="lorry_no" (change)="fetchLoad()">
+                                            <select class="form-select" id="lorry_no" formControlName="lorry_no"
+                                                (input)="fetchLoad()">
                                                 <option value="" hidden>Select Lorry No</option>
                                                 <option *ngFor="let vend of prod_names" value="{{vend.id}}">
                                                     {{vend.name}}
@@ -38,7 +31,7 @@
                                         <div class="col-md-4">
                                             <label for="from_date" class="form-label">From Date</label>
                                             <input type="date" class="form-control" id="from_date"
-                                                formControlName="from_date" (change)="fetchLoad()">
+                                                formControlName="from_date" (input)="fetchLoad()">
                                             <small
                                                 *ngIf="myForm.get('from_date').errors && myForm.get('from_date').touched"><i
                                                     class="bi bi-exclamation-circle"></i> Date is required</small>
@@ -46,23 +39,40 @@
                                         <div class="col-md-4">
                                             <label for="to_date" class="form-label">To Date</label>
                                             <input type="date" class="form-control" id="to_date"
-                                                formControlName="to_date" (change)="fetchLoad()">
+                                                formControlName="to_date" (input)="fetchLoad()">
                                             <small
                                                 *ngIf="myForm.get('to_date').errors && myForm.get('to_date').touched"><i
                                                     class="bi bi-exclamation-circle"></i> Date is required</small>
                                         </div>
                                         <div class="col-md-4">
+                                            <label for="driver1" class="form-label">Driver1 Name</label>
+                                            <input type="text" class="form-control" id="driver1"
+                                                formControlName="driver1">
+                                            <small
+                                                *ngIf="myForm.get('driver1').errors && myForm.get('driver1').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Driver1 is required</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="driver2" class="form-label">Driver2 Name</label>
+                                            <input type="text" class="form-control" id="driver2"
+                                                formControlName="driver2">
+                                            <small
+                                                *ngIf="myForm.get('driver2').errors && myForm.get('driver2').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Driver2 is required</small>
+                                        </div>
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-4">
                                             <label for="start_km" class="form-label">Start KM</label>
                                             <input type="number" class="form-control" id="start_km"
-                                                formControlName="start_km" (change)="balance_km()">
+                                                formControlName="start_km" (input)="balance_km()">
                                             <small
                                                 *ngIf="myForm.get('start_km').errors && myForm.get('start_km').touched"><i
                                                     class="bi bi-exclamation-circle"></i> Start KM is required</small>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="end_km" class="form-label">End KM</label>
-                                            <input type="number" class="form-control" id="end_km"
-                                                (change)="balance_km()" formControlName="end_km">
+                                            <input type="number" class="form-control" id="end_km" (input)="balance_km()"
+                                                formControlName="end_km">
                                             <small
                                                 *ngIf="myForm.get('end_km').errors && myForm.get('end_km').touched"><i
                                                     class="bi bi-exclamation-circle"></i> End KM is required</small>
@@ -75,56 +85,106 @@
                                         <div class="col-md-4">
                                             <label for="diesel" class="form-label">Diesel (Ltrs)</label>
                                             <input type="number" class="form-control" id="diesel"
-                                                (change)="balance_km()" formControlName="diesel">
-                                            <small
-                                                *ngIf="myForm.get('diesel').errors && myForm.get('diesel').touched"><i
-                                                    class="bi bi-exclamation-circle"></i> Diesel is required</small>
+                                                formControlName="diesel" readonly>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="mileage" class="form-label">Mileage</label>
                                             <input type="number" class="form-control" id="mileage"
                                                 formControlName="mileage" readonly>
                                         </div>
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-4">
+                                            <label for="departure" class="form-label">Departure</label>
+                                            <input type="text" class="form-control" id="departure"
+                                                formControlName="departure" readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="via" class="form-label">Via</label>
+                                            <textarea class="form-control" id="via" formControlName="via" rows="3"
+                                                readonly></textarea>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="destination" class="form-label">Destination</label>
+                                            <input type="text" class="form-control" id="destination"
+                                                formControlName="destination" readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="load_details" class="form-label">Load Details</label>
+                                            <textarea class="form-control" id="load_details"
+                                                formControlName="load_details" rows="3" readonly></textarea>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="weight_details" class="form-label">Weight Details</label>
+                                            <textarea class="form-control" id="weight_details"
+                                                formControlName="weight_details" rows="3" readonly></textarea>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="freight_charges" class="form-label">Freight Charges</label>
+                                            <input type="number" class="form-control" id="freight_charges"
+                                                formControlName="freight_charges" readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="diesel_amount" class="form-label">Diesel Amount</label>
+                                            <input type="number" class="form-control" id="diesel_amount"
+                                                formControlName="diesel_amount" readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="loading_charges" class="form-label">Loading Charge</label>
+                                            <input type="number" class="form-control" id="loading_charges"
+                                                formControlName="loading_charges" readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="unloading_charges" class="form-label">UnLoading Charge</label>
+                                            <input type="number" class="form-control" id="unloading_charges"
+                                                formControlName="unloading_charges" readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="misc_charges" class="form-label">Misc Charge</label>
+                                            <input type="number" class="form-control" id="misc_charges"
+                                                formControlName="misc_charges" readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="rto_charge" class="form-label">RTO Charges</label>
+                                            <input type="number" class="form-control" id="rto_charge"
+                                                formControlName="rto_charge" readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="pc_charge" class="form-label">PC Charges</label>
+                                            <input type="number" class="form-control" id="pc_charge"
+                                                (input)="calculate_total()" formControlName="pc_charge">
+                                            <small
+                                                *ngIf="myForm.get('pc_charge').errors && myForm.get('pc_charge').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> PC Charge is required</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="bill" class="form-label">As Per Bill</label>
+                                            <input type="number" class="form-control" id="bill"
+                                                (input)="calculate_total()" formControlName="bill">
+                                            <small *ngIf="myForm.get('bill').errors && myForm.get('bill').touched"><i
+                                                    class="bi bi-exclamation-circle"></i> Bill is required</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="driver_wages" class="form-label">Driver Wages</label>
+                                            <input type="number" class="form-control" id="driver_wages"
+                                                formControlName="driver_wages" readonly>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="total_exp" class="form-label">Total Expenses</label>
+                                            <input type="number" class="form-control " id="total_exp"
+                                                formControlName="total_exp" readonly>
+                                        </div>
                                         <div class="col-md-4">
                                             <label for="adv_amount" class="form-label">Advance Amount</label>
                                             <input type="number" class="form-control" id="adv_amount"
-                                                formControlName="adv_amount">
+                                                (input)="calculate_total()" formControlName="adv_amount">
                                             <small
                                                 *ngIf="myForm.get('adv_amount').errors && myForm.get('adv_amount').touched"><i
                                                     class="bi bi-exclamation-circle"></i> Amount is required</small>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="driver" class="form-label">Driver1 Name</label>
-                                            <input type="text" class="form-control" id="driver"
-                                                formControlName="driver">
-                                            <small
-                                                *ngIf="myForm.get('driver').errors && myForm.get('driver').touched"><i
-                                                    class="bi bi-exclamation-circle"></i> Driver is required</small>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="cleaner" class="form-label">Driver2 Name</label>
-                                            <input type="text" class="form-control" id="cleaner"
-                                                formControlName="cleaner">
-                                            <small
-                                                *ngIf="myForm.get('cleaner').errors && myForm.get('cleaner').touched"><i
-                                                    class="bi bi-exclamation-circle"></i> Cleaner is required</small>
-                                        </div>
-                                        <div class="col-md-4"></div>
-                                        <div class="col-md-4">
-                                            <label for="bill" class="form-label">As Per Bill</label>
-                                            <input type="number" class="form-control" id="bill"
-                                                formControlName="bill">
-                                            <small
-                                                *ngIf="myForm.get('bill').errors && myForm.get('bill').touched"><i
-                                                    class="bi bi-exclamation-circle"></i> Bill is required</small>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="pc_charge" class="form-label">PC Charges</label>
-                                            <input type="number" class="form-control" id="pc_charge"
-                                                formControlName="pc_charge">
-                                            <small
-                                                *ngIf="myForm.get('pc_charge').errors && myForm.get('pc_charge').touched"><i
-                                                    class="bi bi-exclamation-circle"></i> PC Charge is required</small>
+                                            <label for="balance" class="form-label">Balance</label>
+                                            <input type="number" class="form-control" id="balance"
+                                                formControlName="balance" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -264,7 +324,8 @@
                                                             <td><strong>Total</strong></td>
                                                             <td><strong>{{ getTotal(3,'up') }}</strong></td>
                                                             <td><strong>{{ getTotal(3,'down') }}</strong></td>
-                                                            <td><strong>{{ getTotal(3,'up') + getTotal(3,'down') }}</strong></td>
+                                                            <td><strong>{{ getTotal(3,'up') + getTotal(3,'down')
+                                                                    }}</strong></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -278,7 +339,7 @@
                                                     <thead class="table-light">
                                                         <tr>
                                                             <th>Particular</th>
-                                                            <th>amount</th>
+                                                            <th>Amount</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -315,7 +376,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </form>
 
                         </div>

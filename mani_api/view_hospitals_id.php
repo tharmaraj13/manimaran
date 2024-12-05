@@ -16,8 +16,8 @@ if ($id == 'undefined') {
         $resp_status->status = 'ok';
         $resp_status->hname = $result['number'];
         $resp_status->hplace = $result['wheels'];
-    }
-    else{
+        $resp_status->taxRate = (float)$result['taxRate'];
+    } else {
         $resp->status = 'error';
     }
     mysqli_close($dbcon);

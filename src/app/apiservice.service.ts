@@ -9,6 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class ApiserviceService {
   website = "/mani_api/";
   // website = "http://3.81.61.104/mani_api/";
+  // website = "http://localhost:3000/";
   constructor(private http: HttpClient, private Cookies: CookieService) { }
   checking(): Observable<Object> {
     var token = this.Cookies.get('token');
@@ -41,11 +42,12 @@ export class ApiserviceService {
     formData.append("values", JSON.stringify(data));
     return this.http.post(url, formData);
   }
-  add_hospital(hname: any, hplace: any, id: any): Observable<Object> {
+  add_hospital(hname: any, hplace: any, taxRate: any, id: any): Observable<Object> {
     var url = this.website + 'add_hospital.php';
     var formData = new FormData();
     formData.append("hname", hname);
     formData.append("hplace", hplace);
+    formData.append("taxRate", taxRate);
     formData.append("id", id);
     return this.http.post(url, formData);
   }
@@ -275,6 +277,30 @@ export class ApiserviceService {
   }
   del_advance(id: any): Observable<Object> {
     var url = this.website + 'del_advance.php';
+    var formData = new FormData();
+    formData.append("id", id);
+    return this.http.post(url, formData);
+  }
+
+  add_expense(data: any): Observable<Object> {
+    var url = this.website + 'add_expense.php';
+    var formData = new FormData();
+    formData.append("values", JSON.stringify(data));
+    return this.http.post(url, formData);
+  }
+  view_expense_id(id: any): Observable<Object> {
+    var url = this.website + 'view_expense_id.php';
+    var formData = new FormData();
+    formData.append("id", id);
+    return this.http.post(url, formData);
+  }
+  view_expense_all(): Observable<Object> {
+    var url = this.website + 'view_expense_all.php';
+    var formData = new FormData();
+    return this.http.post(url, formData);
+  }
+  del_expense(id: any): Observable<Object> {
+    var url = this.website + 'del_expense.php';
     var formData = new FormData();
     formData.append("id", id);
     return this.http.post(url, formData);

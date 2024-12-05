@@ -1,2 +1,2 @@
 <?php
-$dbcon=mysqli_connect('localhost','root','admin123','manimaran');
+$dbcon=mysqli_connect('127.0.0.1','root','admin123','manimaran');
