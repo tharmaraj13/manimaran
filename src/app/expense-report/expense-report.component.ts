@@ -32,30 +32,30 @@ export class ExpenseReportComponent {
         adv_amount: new FormControl('', Validators.required),
         start_km: new FormControl('', Validators.required),
         end_km: new FormControl('', Validators.required),
-        run_km: new FormControl(0, Validators.required),
-        diesel: new FormControl(0, Validators.required),
-        mileage: new FormControl(0, Validators.required),
+        run_km: new FormControl(0),
+        diesel: new FormControl(0),
+        mileage: new FormControl(0),
         driver1: new FormControl('', Validators.required),
         driver2: new FormControl('', Validators.required),
         from_date: new FormControl('', Validators.required),
         to_date: new FormControl('', Validators.required),
         bill: new FormControl('', Validators.required),
         pc_charge: new FormControl('', Validators.required),
-        rto_charge: new FormControl(0, Validators.required),
-        diesel_amount: new FormControl(0, Validators.required),
-        departure: new FormControl('', Validators.required),
-        via: new FormControl('', Validators.required),
-        destination: new FormControl('', Validators.required),
-        load_details: new FormControl('', Validators.required),
-        weight_details: new FormControl('', Validators.required),
-        freight_charges: new FormControl(0, Validators.required),
-        loading_charges: new FormControl(0, Validators.required),
-        unloading_charges: new FormControl(0, Validators.required),
-        misc_charges: new FormControl(0, Validators.required),
-        driver_wages: new FormControl(0, Validators.required),
         office_commission: new FormControl('', Validators.required),
-        total_exp: new FormControl(0, Validators.required),
-        balance: new FormControl(0, Validators.required),
+        rto_charge: new FormControl(0),
+        diesel_amount: new FormControl(0),
+        departure: new FormControl(''),
+        via: new FormControl(''),
+        destination: new FormControl(''),
+        load_details: new FormControl(''),
+        weight_details: new FormControl(''),
+        freight_charges: new FormControl(0),
+        loading_charges: new FormControl(0),
+        unloading_charges: new FormControl(0),
+        misc_charges: new FormControl(0),
+        driver_wages: new FormControl(0),
+        total_exp: new FormControl(0),
+        balance: new FormControl(0),
       }
     );
     this.subscribeToDieselRows();
@@ -102,7 +102,7 @@ export class ExpenseReportComponent {
     const totalDiesel = this.getTotal(2, 'qty');
     const totalAmt = this.getTotal(2, 'amount');
     this.myForm.get('diesel')?.setValue(totalDiesel, { emitEvent: false }); // Prevent re-triggering the valueChanges event
-    this.myForm.get('diesel_amount')?.setValue(totalAmt, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    // this.myForm.get('diesel_amount')?.setValue(totalAmt, { emitEvent: false }); // Prevent re-triggering the valueChanges event
     this.balance_km();
     this.calculate_total();
   }
@@ -242,8 +242,8 @@ export class ExpenseReportComponent {
       ton: [''],
       freight: [''],
       commission: [''],
-      loadCharge: [''],
-      unloadCharge: ['']
+      loadCharge: [0],
+      unloadCharge: [0]
     }));
   }
   delLoadRow(i: any) {
@@ -252,8 +252,8 @@ export class ExpenseReportComponent {
   addDieselRow() {
     this.dieselRows.push(this.fb.group({
       date: [''],
-      qty: [''],
-      amount: [''],
+      qty: [0],
+      amount: [0],
     }));
   }
   delDieselRow(i: any) {
@@ -262,8 +262,8 @@ export class ExpenseReportComponent {
   addRtoRow() {
     this.rtoRows.push(this.fb.group({
       location: [''],
-      up: [''],
-      down: [''],
+      up: [0],
+      down: [0],
     }));
   }
   delRtoRow(i: any) {
@@ -272,7 +272,7 @@ export class ExpenseReportComponent {
   addMiscRow() {
     this.miscRows.push(this.fb.group({
       particular: [''],
-      amount: [''],
+      amount: [0],
     }));
   }
   delMiscRow(i: any) {
@@ -312,8 +312,14 @@ export class ExpenseReportComponent {
   onSubmit() {
     this.myForm.markAllAsTouched();
     const formData = { ...this.myForm.value };
-    const testData = formData.loadRows.map((e: any) => ({ lorry_details_id: e.id, loading_charge: e.loadCharge, unloading_charge: e.unloadCharge }));
-    formData.loadRows = testData;
+    const loadRows = formData.loadRows.map((e: any) => ({ lorry_details_id: e.id, loading_charge: e.loadCharge, unloading_charge: e.unloadCharge }));
+    const rtoRows = formData.rtoRows.map((e: any) => ({ location: e.location, up: e.up || 0, down: e.down || 0 }));
+    const dieselRows = formData.dieselRows.map((e: any) => ({ date: e.date, qty: e.qty || 0, amount: e.amount || 0 }));
+    const miscRows = formData.miscRows.map((e: any) => ({ particular: e.particular, amount: e.amount || 0 }));
+    formData.loadRows = loadRows;
+    formData.rtoRows = rtoRows;
+    formData.dieselRows = dieselRows;
+    formData.miscRows = miscRows;
     console.log(formData);
     if (this.myForm.valid) {
       var data = Array();
@@ -326,6 +332,37 @@ export class ExpenseReportComponent {
         });
         this.router.navigate(['expenses']);
       });
+    }
+  }
+  checkKey(event: KeyboardEvent, section: string, i: number) {
+    if (event.key === 'Enter' && event.shiftKey) {
+      event.preventDefault(); // Prevent default form submission
+      switch (section) {
+        case 'diesel':
+          this.delDieselRow(i);
+          break;
+        case 'rto':
+          this.delRtoRow(i);
+          break;
+        case 'misc':
+          this.delMiscRow(i);
+          break;
+      }
+    }
+    else if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent default form submission
+
+      switch (section) {
+        case 'diesel':
+          this.addDieselRow();
+          break;
+        case 'rto':
+          this.addRtoRow();
+          break;
+        case 'misc':
+          this.addMiscRow();
+          break;
+      }
     }
   }
 }
