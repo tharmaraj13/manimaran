@@ -53,6 +53,7 @@ export class ExpenseReportComponent {
         unloading_charges: new FormControl(0, Validators.required),
         misc_charges: new FormControl(0, Validators.required),
         driver_wages: new FormControl(0, Validators.required),
+        office_commission: new FormControl('', Validators.required),
         total_exp: new FormControl(0, Validators.required),
         balance: new FormControl(0, Validators.required),
       }
@@ -168,7 +169,7 @@ export class ExpenseReportComponent {
       +this.myForm.get('bill').value +
       +this.myForm.get('driver_wages').value;
     this.myForm.get('total_exp').setValue(total);
-    const balance = this.myForm.get('total_exp').value - this.myForm.get('adv_amount').value;
+    const balance = this.myForm.get('total_exp').value - this.myForm.get('adv_amount').value - this.myForm.get('office_commission').value;
     this.myForm.get('balance').setValue(balance);
   }
   // Method to get the FormArray

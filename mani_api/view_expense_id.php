@@ -11,7 +11,7 @@ $resp_status = new stdClass;
 $check = $dbcon->query("SELECT 
     lorry_no,from_date,to_date,
     driver1,driver2,start_km,end_km,
-    pc_charge,bill,adv_amount
+    pc_charge,bill,adv_amount,office_commission
     FROM expenses where id='$id';");
 if ($check->num_rows > 0) {
     $data = mysqli_fetch_object($check);
