@@ -13,6 +13,7 @@ $fromDate = $array[1];
 $toDate = $array[2];
 $id = $array[3];
 $response = [];
+$response_stat = new stdClass;
 
 if ($id == NULL) {
     $check = $dbcon->query("SELECT X.*, Z.taxRate
@@ -21,6 +22,28 @@ if ($id == NULL) {
         where X.lorry_no='$lorryNo' AND
         X.load_date  BETWEEN '" . strtotime($fromDate) . "' AND '" . strtotime($toDate) . "'
         ORDER by X.load_date ASC;");
+    $check2 = $dbcon->query("SELECT * FROM enum;");
+    $allData = [];
+    while ($row = mysqli_fetch_object($check2)) {
+        $allData[] = $row;
+    }
+    $miscRows = [];
+    $rtoRows = [];
+    foreach ($allData as $item) {
+        if ($item->type === "MISC") {
+            $miscRows[] = [
+                'particular' => $item->value,
+                'amount' => 0
+            ];
+        }
+        if ($item->type === "RTO") {
+            $rtoRows[] = [
+                'location' => $item->value,
+                'up' => 0,
+                'down' => 0
+            ];
+        }
+    }
     if ($check->num_rows > 0) {
         for ($i = 0; $i < $check->num_rows; $i++) {
             $result = mysqli_fetch_assoc($check);
@@ -41,6 +64,9 @@ if ($id == NULL) {
             $response[] = $resp_status;
         }
     }
+    $response_stat->data = $response;
+    $response_stat->miscRows = $miscRows;
+    $response_stat->rtoRows = $rtoRows;
 } else {
     $check = $dbcon->query("SELECT X.*,Y.loading_charge as loadCharge, Y.unloading_charge as unloadCharge, Z.taxRate
         FROM lorry_details X
@@ -69,7 +95,8 @@ if ($id == NULL) {
             $response[] = $resp_status;
         }
     }
+    $response_stat->data = $response;
 }
 
-echo json_encode($response);
+echo json_encode($response_stat);
 mysqli_close($dbcon);

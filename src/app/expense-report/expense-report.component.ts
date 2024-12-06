@@ -44,6 +44,7 @@ export class ExpenseReportComponent {
         office_commission: new FormControl('', Validators.required),
         rto_charge: new FormControl(0),
         diesel_amount: new FormControl(0),
+        diesel_total_amount: new FormControl(0),
         departure: new FormControl(''),
         via: new FormControl(''),
         destination: new FormControl(''),
@@ -77,9 +78,15 @@ export class ExpenseReportComponent {
     const to_date = this.myForm.get('to_date').value;
     if (lorry_no && from_date && to_date) {
       this.apiservice.view_load([lorry_no, from_date, to_date, this.id]).subscribe((res: any) => {
-        if (res.length > 0) {
-          this.taxRate = res[0].taxRate;
-          this.setLoadRowsdata(res);
+        if (res?.data?.length > 0) {
+          this.taxRate = res?.data?.[0]?.taxRate;
+          this.setLoadRowsdata(res?.data || []);
+        }
+        if (res?.miscRows?.length > 0) {
+          this.setMiscRowsdata(res?.miscRows || []);
+        }
+        if (res?.rtoRows?.length > 0) {
+          this.setRtoRowsdata(res?.rtoRows || []);
         }
       });
     }
@@ -102,7 +109,7 @@ export class ExpenseReportComponent {
     const totalDiesel = this.getTotal(2, 'qty');
     const totalAmt = this.getTotal(2, 'amount');
     this.myForm.get('diesel')?.setValue(totalDiesel, { emitEvent: false }); // Prevent re-triggering the valueChanges event
-    // this.myForm.get('diesel_amount')?.setValue(totalAmt, { emitEvent: false }); // Prevent re-triggering the valueChanges event
+    this.myForm.get('diesel_total_amount')?.setValue(totalAmt, { emitEvent: false }); // Prevent re-triggering the valueChanges event
     this.balance_km();
     this.calculate_total();
   }
@@ -160,7 +167,7 @@ export class ExpenseReportComponent {
     }
   }
   calculate_total() {
-    const total = this.myForm.get('diesel_amount').value +
+    const total = +this.myForm.get('diesel_amount').value +
       +this.myForm.get('loading_charges').value +
       +this.myForm.get('unloading_charges').value +
       +this.myForm.get('misc_charges').value +

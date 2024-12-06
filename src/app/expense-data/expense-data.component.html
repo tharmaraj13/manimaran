@@ -33,7 +33,7 @@
                                                 <th>Load</th>
                                                 <th>Weight</th>
                                                 <th>Freight</th>
-                                                <th>Diesel Amount</th>
+                                                <th>Diesel/Crossing Amount</th>
                                                 <th>Loading</th>
                                                 <th>UnLoading</th>
                                                 <th>Misc</th>
@@ -45,6 +45,7 @@
                                                 <th>Total Exp</th>
                                                 <th>Advance</th>
                                                 <th>Balance</th>
+                                                <th>Diesel Amt</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -78,6 +79,7 @@
                                                 <td>{{prod.total_exp}}</td>
                                                 <td>{{prod.adv_amount}}</td>
                                                 <td>{{prod.balance}}</td>
+                                                <td>{{prod.diesel_total_amount}}</td>
                                                 <td><a href="/add-expense/{{prod.id}}">Edit</a>
                                                     &nbsp;<a style="cursor: pointer;"
                                                         (click)="remove(prod.id)">Remove</a></td>

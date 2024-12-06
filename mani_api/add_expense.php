@@ -75,15 +75,13 @@ if ($id == NULL) {
 
         $dbcon->query($sql);
         $dbcon->query("DELETE FROM load_charges WHERE expenses_id='$id';");
-        $dbcon->query("DELETE FROM diesel_charges WHERE expenses_id='$id';");
-        $dbcon->query("DELETE FROM rto_charges WHERE expenses_id='$id';");
-        $dbcon->query("DELETE FROM misc_charges WHERE expenses_id='$id';");
         foreach ($loadRows as $row) {
             $load_columns = implode(", ", array_keys($row));  // Dynamically fetch keys
             $load_values = "'" . implode("', '", array_values($row)) . "'";  // Dynamically fetch values
             $load_sql = "INSERT INTO load_charges (expenses_id, $load_columns) VALUES ($id, $load_values)";
             $dbcon->query($load_sql);
         }
+        $dbcon->query("DELETE FROM diesel_charges WHERE expenses_id='$id';");
         foreach ($dieselRows as &$row) {
             $row['date'] = strtotime($row['date']);
             $load_columns = implode(", ", array_keys($row));  // Dynamically fetch keys
@@ -91,12 +89,14 @@ if ($id == NULL) {
             $load_sql = "INSERT INTO diesel_charges (expenses_id, $load_columns) VALUES ($id, $load_values)";
             $dbcon->query($load_sql);
         }
+        $dbcon->query("DELETE FROM rto_charges WHERE expenses_id='$id';");
         foreach ($rtoRows as $row) {
             $load_columns = implode(", ", array_keys($row));  // Dynamically fetch keys
             $load_values = "'" . implode("', '", array_values($row)) . "'";  // Dynamically fetch values
             $load_sql = "INSERT INTO rto_charges (expenses_id, $load_columns) VALUES ($id, $load_values)";
             $dbcon->query($load_sql);
         }
+        $dbcon->query("DELETE FROM misc_charges WHERE expenses_id='$id';");
         foreach ($miscRows as $row) {
             $load_columns = implode(", ", array_keys($row));  // Dynamically fetch keys
             $load_values = "'" . implode("', '", array_values($row)) . "'";  // Dynamically fetch values
