@@ -91,6 +91,17 @@ export class ExpenseReportComponent {
       });
     }
   }
+  fetchPrev() {
+    const lorry_no = this.myForm.get('lorry_no').value;
+    if (lorry_no) {
+      this.apiservice.view_load_prev([lorry_no]).subscribe((res: any) => {
+        if (res?.status == 'ok') {
+          res.from_date ? this.myForm.get('from_date')?.setValue(res.from_date, { emitEvent: false }) : null;
+          res.start_km ? this.myForm.get('start_km')?.setValue(res.start_km, { emitEvent: false }) : null;
+        }
+      });
+    }
+  }
   subscribeToDieselRows() {
     this.dieselRows.valueChanges.subscribe(() => {
       this.updateDieselValues();

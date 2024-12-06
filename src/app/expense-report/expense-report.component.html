@@ -18,7 +18,7 @@
                                         <div class="col-md-4">
                                             <label for="lorry_no" class="form-label">Lorry No</label>
                                             <select class="form-select" id="lorry_no" formControlName="lorry_no"
-                                                (input)="fetchLoad()">
+                                                (change)="fetchPrev()">
                                                 <option value="" readonly>Select Lorry No</option>
                                                 <option *ngFor="let vend of prod_names" value="{{vend.id}}">
                                                     {{vend.name}}
@@ -32,7 +32,7 @@
                                         <div class="col-md-4">
                                             <label for="from_date" class="form-label">From Date</label>
                                             <input type="date" class="form-control" id="from_date"
-                                                formControlName="from_date" (input)="fetchLoad()">
+                                                formControlName="from_date" (change)="fetchLoad()">
                                             <small
                                                 *ngIf="myForm.get('from_date').errors && myForm.get('from_date').touched"><i
                                                     class="bi bi-exclamation-circle"></i> Date is required</small>
@@ -40,7 +40,7 @@
                                         <div class="col-md-4">
                                             <label for="to_date" class="form-label">To Date</label>
                                             <input type="date" class="form-control" id="to_date"
-                                                formControlName="to_date" (input)="fetchLoad()">
+                                                formControlName="to_date" (change)="fetchLoad()">
                                             <small
                                                 *ngIf="myForm.get('to_date').errors && myForm.get('to_date').touched"><i
                                                     class="bi bi-exclamation-circle"></i> Date is required</small>

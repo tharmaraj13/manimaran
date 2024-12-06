@@ -360,4 +360,10 @@ export class ApiserviceService {
     formData.append("values", JSON.stringify(data));
     return this.http.post(url, formData);
   }
+  view_load_prev(data: any): Observable<Object> {
+    var url = this.website + 'view_load_prev.php';
+    var formData = new FormData();
+    formData.append("values", JSON.stringify(data));
+    return this.http.post(url, formData);
+  }
 }
