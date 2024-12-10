@@ -24,7 +24,7 @@ if ($check->num_rows > 0) {
     FROM diesel_charges where expenses_id='$id';");
     $resp_status->dieselRows = [];
     while ($row = mysqli_fetch_object($check1)) {
-        $row->date = Date('Y-m-d', $row->date);
+        $row->date = $row->date ? Date('Y-m-d', $row->date) : '';
         $resp_status->dieselRows[] = $row;
     }
     $check1 = $dbcon->query("SELECT 
