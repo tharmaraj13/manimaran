@@ -42,6 +42,6 @@ export class ExpenseDataComponent {
     }
   }
   transform(value: string): string {
-    return value ? value.replace(/\n/g, ', ') : value;
+    return value ? value.replace(/\n/g, ',<br>') : value;
   }
 }

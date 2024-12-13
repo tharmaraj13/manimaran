@@ -62,10 +62,10 @@
                                                 <td>{{prod.diesel}}</td>
                                                 <td>{{prod.mileage}}</td>
                                                 <td>{{prod.departure}}</td>
-                                                <td>{{transform(prod.via)}}</td>
+                                                <td [innerHTML]="transform(prod.via)"></td>
                                                 <td>{{prod.destination}}</td>
-                                                <td>{{transform(prod.load_details)}}</td>
-                                                <td>{{transform(prod.weight_details)}}</td>
+                                                <td [innerHTML]="transform(prod.load_details)"></td>
+                                                <td [innerHTML]="transform(prod.weight_details)"></td>
                                                 <td>{{prod.freight_charges}}</td>
                                                 <td>{{prod.diesel_amount}}</td>
                                                 <td>{{prod.loading_charges}}</td>
