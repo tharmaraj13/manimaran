@@ -8,7 +8,7 @@ include 'config.php';
 $id = $_POST['id'];
 $resp_status = new stdClass;
 if ($id == 'undefined') {
-    $resp->status = 'error1';
+    $resp_status->status = 'error1';
 } else {
     $check = $dbcon->query("SELECT * FROM lorry_no where id='$id';");
     if ($check->num_rows > 0) {
