@@ -28,6 +28,6 @@ if ($id == NULL) {
         $result = mysqli_fetch_assoc($check);
         $dbcon->query("UPDATE maintenance SET lm_date='" . strtotime($array[0]) . "',lorry_no='$array[1]',odometer='$array[2]',remarks='$array[5]',services='".json_encode($array[3])."' 
         where id='$id';");
-        mysqli_close($dbcon);
     }
+    mysqli_close($dbcon);
 }

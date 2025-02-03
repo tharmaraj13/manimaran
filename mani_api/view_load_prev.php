@@ -22,5 +22,5 @@ if ($check->num_rows > 0) {
     $response_stat->status = "error";
 }
 
-echo json_encode($response_stat);
 mysqli_close($dbcon);
+echo json_encode($response_stat);

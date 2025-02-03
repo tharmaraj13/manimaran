@@ -17,5 +17,5 @@ if ($check->num_rows > 0) {
         $response[] = $result;
     }
 }
-echo json_encode($response);
 mysqli_close($dbcon);
+echo json_encode($response);

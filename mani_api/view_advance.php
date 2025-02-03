@@ -24,5 +24,5 @@ if ($check->num_rows > 0) {
         $response[] = $resp_status;
     }
 }
-echo json_encode($response);
 mysqli_close($dbcon);
+echo json_encode($response);

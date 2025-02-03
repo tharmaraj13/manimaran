@@ -18,7 +18,6 @@ if ($check1->num_rows > 0) {
 if ($id == 'undefined') {
     $resp_status->status = 'error1';
     $resp_status->data = $data;
-    mysqli_close($dbcon);
 } else {
     $check = $dbcon->query("SELECT * FROM cities where id='$id';");
     if ($check->num_rows > 0) {
@@ -30,6 +29,6 @@ if ($id == 'undefined') {
     } else {
         $resp_status->status = 'error';
     }
-    mysqli_close($dbcon);
 }
+mysqli_close($dbcon);
 echo json_encode($resp_status);

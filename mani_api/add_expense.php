@@ -103,6 +103,6 @@ if ($id == NULL) {
             $load_sql = "INSERT INTO misc_charges (expenses_id, $load_columns) VALUES ($id, $load_values)";
             $dbcon->query($load_sql);
         }
-        mysqli_close($dbcon);
     }
+    mysqli_close($dbcon);
 }

@@ -39,6 +39,6 @@ if ($id == 'undefined') {
     } else {
         $resp_status->status = 'error';
     }
-    mysqli_close($dbcon);
 }
+mysqli_close($dbcon);
 echo json_encode($resp_status);

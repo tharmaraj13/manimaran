@@ -7,3 +7,4 @@ header("Access-Control-Allow-Headers:Access-Control-Allow-Headers, Origin,Accept
 include 'config.php';
 $array=$_POST['data'];
 $dbcon->query("UPDATE lorry_details SET advance_amt='',advance_date='',commission='',loading_charge='',mamul='' where id='';");
+mysqli_close($dbcon);

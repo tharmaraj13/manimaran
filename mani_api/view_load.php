@@ -98,5 +98,5 @@ if ($id == NULL) {
     $response_stat->data = $response;
 }
 
-echo json_encode($response_stat);
 mysqli_close($dbcon);
+echo json_encode($response_stat);
